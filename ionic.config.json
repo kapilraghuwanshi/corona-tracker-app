@@ -1,0 +1,7 @@
+{
+  "name": "corona-epidemic-tracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

@@ -1,0 +1,8 @@
+{
+  "appId": "com.kialabs.coronatracker",
+  "appName": "corona-epidemic-tracker",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "public",
+  "cordova": {}
+}

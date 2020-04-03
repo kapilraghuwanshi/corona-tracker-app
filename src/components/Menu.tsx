@@ -12,6 +12,7 @@ import {
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { camera, trash, close } from 'ionicons/icons';
 import './Menu.css';
 
 interface MenuProps extends RouteComponentProps {
@@ -27,14 +28,14 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
-    url: '/page/Inbox',
+    title: 'Dashboard',
+    url: '/page/dashboard',
     iosIcon: mailOutline,
     mdIcon: mailSharp
   },
   {
-    title: 'Outbox',
-    url: '/page/Outbox',
+    title: 'Latest News',
+    url: '/page/latestnews',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp
   },

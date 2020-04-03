@@ -3,11 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "An Ionic hybrid mobile app to get latest news and track epidemic Corona - Covid19",
-  "homepage": "https://about.me/kialabs/",
   "author": {
     "name": "Kapil Raghuwanshi",
     "email": "kapil.raghuwanshi5@gmail.com",
-    "url": "https://about.me/kapilraghuwanshi"
+    "url": "https://about.me/kialabs"
   },
   "scripts": {
     "start": "react-scripts start",

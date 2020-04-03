@@ -22,3 +22,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+coronatracker-20efc-firebase-adminsdk-6bpw9-23ce9cc25d.json
+coronatracker-273014-e9a0c6eb53fd.json
+ios/App/App/GoogleService-Info.plist
+android/google-services.json

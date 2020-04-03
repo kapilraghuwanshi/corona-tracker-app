@@ -3,19 +3,19 @@
   "name": "Corona Tracker",
   "icons": [
     {
-      "src": "assets/icon/favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "assets/icon/coronatracker_favicon.png",
+      "sizes": "144x144",
       "type": "image/x-icon"
     },
     {
-      "src": "assets/icon/icon.png",
+      "src": "assets/icon/coronatracker.png",
       "type": "image/png",
-      "sizes": "512x512",
+      "sizes": "937x937",
       "purpose": "maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "green",
-  "background_color": "black"
+  "theme_color": "#28E5BA",
+  "background_color": "#28E5BA"
 }

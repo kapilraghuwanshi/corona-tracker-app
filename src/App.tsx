@@ -55,11 +55,11 @@ const App: React.FC = () => (
           </IonTabButton>
           <IonTabButton tab="CountryTab" href="/country">
             <IonIcon icon={home} />
-            <IonLabel>Your Country</IonLabel>
+            <IonLabel> Country</IonLabel>
           </IonTabButton>
           <IonTabButton tab="NewsTab" href="/news">
             <IonIcon icon={newspaper} />
-            <IonLabel>Latest News</IonLabel>
+            <IonLabel> News</IonLabel>
           </IonTabButton>
           <IonTabButton tab="GuidelinesTab" href="/guidelines">
             <IonIcon icon={informationCircleOutline} />
@@ -67,7 +67,7 @@ const App: React.FC = () => (
           </IonTabButton>
           <IonTabButton tab="HelpTab" href="/help">
             <IonIcon icon={call} />
-            <IonLabel>Help & Feedback</IonLabel>
+            <IonLabel>Help</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

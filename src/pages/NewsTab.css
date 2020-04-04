@@ -10,7 +10,7 @@ ion-toolbar {
   width: 30px;
 }
 
-.appTitle{
+.appTitle {
   font-weight: bolder;
 }
 
@@ -18,4 +18,9 @@ ion-toolbar {
   text-align: right;
   font-weight: bolder;
   font-family: fantasy;
+}
+
+.newsImage {
+  width: 100%;
+  height: 100%;
 }

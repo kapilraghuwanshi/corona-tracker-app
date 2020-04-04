@@ -12,6 +12,7 @@ ion-toolbar {
 
 .appTitle{
   font-weight: bolder;
+  text-align: center;
 }
 
 .appDate {

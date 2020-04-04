@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
-import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import Menu from './components/Menu';
-import Page from './pages/Page';
+import {
+  IonApp,
+  IonIcon,
+  IonLabel,
+  IonRouterOutlet,
+  IonTabBar,
+  IonTabButton,
+  IonTabs
+} from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { planet, home, newspaper, call, informationCircleOutline } from 'ionicons/icons';
+import WorldTab from './pages/WorldTab';
+import CountryTab from './pages/CountryTab';
+import NewsTab from './pages/NewsTab';
+import GuidelinesTab from './pages/GuidelinesTab';
+import HelpTab from './pages/HelpTab';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,26 +36,43 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => {
-
-  const [selectedPage, setSelectedPage] = useState('');
-
-  return (
-    <IonApp>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu selectedPage={selectedPage} />
-          <IonRouterOutlet id="main">
-            <Route path="/page/:name" render={(props) => {
-              setSelectedPage(props.match.params.name);
-              return <Page {...props} />;
-            }} exact={true} />
-            <Route path="/" render={() => <Redirect to="/page/Inbox" />} exact={true} />
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
-  );
-};
+const App: React.FC = () => (
+  <IonApp>
+    <IonReactRouter>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path="/world" component={WorldTab} exact={true} />
+          <Route path="/country" component={CountryTab} exact={true} />
+          <Route path="/news" component={NewsTab} />
+          <Route path="/guidelines" component={GuidelinesTab} />
+          <Route path="/help" component={HelpTab} />
+          <Route path="/" render={() => <Redirect to="/world" />} exact={true} />
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom" color="success">
+          <IonTabButton tab="WorldTab" href="/world">
+            <IonIcon icon={planet} />
+            <IonLabel>World</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="CountryTab" href="/country">
+            <IonIcon icon={home} />
+            <IonLabel>Your Country</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="NewsTab" href="/news">
+            <IonIcon icon={newspaper} />
+            <IonLabel>Latest News</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="GuidelinesTab" href="/guidelines">
+            <IonIcon icon={informationCircleOutline} />
+            <IonLabel>Guidelines</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="HelpTab" href="/help">
+            <IonIcon icon={call} />
+            <IonLabel>Help & Feedback</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
+  </IonApp>
+);
 
 export default App;

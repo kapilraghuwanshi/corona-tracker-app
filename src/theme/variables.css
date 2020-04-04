@@ -3,6 +3,14 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
+ /** app theme **/
+  --ion-color-apptheme: #28E5BA;
+  --ion-color-apptheme-rgb: 40, 229, 186;
+  --ion-color-apptheme-contrast: #ffffff;
+  --ion-color-apptheme-contrast-rgb: 255, 255, 255;
+  --ion-color-apptheme-shade: #85FFE3;
+  --ion-color-apptheme-tint: #00DBA8;
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -158,6 +166,7 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255,255,255;
+    --ion-font-family: sans-serif;
 
     --ion-color-step-50: #0d0d0d;
     --ion-color-step-100: #1a1a1a;
@@ -196,6 +205,7 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-text-color: #ffffff;
     --ion-text-color-rgb: 255,255,255;
+    --ion-font-family: sans-serif;
 
     --ion-border-color: #222222;
 
@@ -229,4 +239,5 @@ http://ionicframework.com/docs/theming/ */
   ion-title.title-large {
     --color: white;
   }
+  
 }

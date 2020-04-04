@@ -1,0 +1,23 @@
+ion-content ion-toolbar {
+  --background: translucent;
+}aion-content {
+  --background: translucent;
+}
+
+ion-toolbar {
+  --background: var(--ion-color-apptheme);
+}
+
+.appIcon {
+  width: 30px;
+}
+
+.appTitle{
+  font-weight: bolder;
+}
+
+.appDate {
+  text-align: right;
+  font-weight: bolder;
+  font-family: fantasy;
+}

@@ -3,7 +3,7 @@ ion-content {
 }
 
 ion-toolbar {
-  --background: var(--ion-color-apptheme);
+  --background: var(--ion-color-primary);
 }
 
 .appIcon {
@@ -22,8 +22,8 @@ ion-toolbar {
 }
 
 .pageTitle {
+  color: darkblue;
   text-align: center;
-  font-size: 17px;
 }
 
 .casesBox {
@@ -88,7 +88,7 @@ ion-toolbar {
 
 .pieCard {
   margin-top: -5px;
-  margin-bottom: 5px;
+  padding-top: 5px;
 }
 
 .tipsSlides {

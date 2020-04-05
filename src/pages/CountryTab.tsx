@@ -44,7 +44,7 @@ const CountryTab: React.FC = () => {
     getCountryData();
   }, []);
 
-console.log(data[60]);
+  console.log(data[60]);
 
   const TotalCasesPieChart = {
     labels: ['Total', 'Confirmed', 'Recovered', 'Deaths'],
@@ -80,10 +80,10 @@ console.log(data[60]);
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonToolbar>
-          <IonTitle>India Cases</IonTitle>
-        </IonToolbar>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching total cases...'} />
+        <IonRow>
+          <IonCol class="pageTitle">India COVID19 Cases</IonCol>
+        </IonRow>
         <IonCard>
           <Doughnut data={TotalCasesPieChart}
             options={{

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg, IonRow, IonCol, IonList, IonItem, IonLoading, IonCard, IonSlides, IonSlide } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg, IonRow, IonCol, IonList, IonItem, IonLoading, IonCard, IonSlides, IonSlide, IonLabel, IonGrid } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import { Pie, } from 'react-chartjs-2';
@@ -17,6 +17,16 @@ interface ICaseCount {
   deaths: number;
 }
 
+interface IGLobalCountryWiseCount {
+  count: number;
+  date: string;
+  result: ICountry[];
+}
+
+interface ICountry {
+  country: ICaseCount
+}
+
 const slideOpts = {
   initialSlide: 1,
   speed: 50,
@@ -28,6 +38,11 @@ const slideOpts = {
 function AddNumFunc(props: any) {
   return (props.a + props.b + props.c).toLocaleString();
 }
+
+// function CountryCodeToNames(code: string): string {
+//   if 
+//   return ;
+// }
 
 const WorldTab: React.FC = () => {
 
@@ -68,6 +83,16 @@ const WorldTab: React.FC = () => {
     ]
   }
 
+  const [countryWiseData, setCountryWiseData] = useState<ICountry[]>([]);
+  useEffect(() => {
+    const getGlobalCountryData = async () => {
+      //latest global country wise count
+      const result = await axios('https://covidapi.info/api/v1/global/latest');
+      setCountryWiseData(result.data.result);
+    };
+    getGlobalCountryData();
+  }, []);
+
   return (
     <IonPage>
       <IonHeader>
@@ -80,11 +105,10 @@ const WorldTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonToolbar>
-          <IonTitle class="pageTitle">World COVID-19</IonTitle>
-        </IonToolbar>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching total cases...'} />
-
+        <IonRow>
+          <IonCol class="pageTitle">COVID-19 Dashboard</IonCol>
+        </IonRow>
         <IonRow class="casesBox">
           <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
           <IonCol class="confirmedBox">Confirmed {confirmed?.toLocaleString()}</IonCol>
@@ -119,10 +143,34 @@ const WorldTab: React.FC = () => {
           </IonSlide>
         </IonSlides>
         <IonCard>
-
+          <IonGrid>
+            <IonRow class="">
+              <IonCol>Place</IonCol>
+              <IonCol>Total</IonCol>
+              <IonCol>Active</IonCol>
+              <IonCol>Recovered</IonCol>
+              <IonCol>Deaths</IonCol>
+            </IonRow>
+            {countryWiseData.map((item, idx) => (
+              <IonRow key={idx} >
+                <IonCol>{Object.keys(item)}</IonCol>
+                <IonCol><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
+                <IonCol>{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
+                <IonCol>{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
+                <IonCol>{Object.values(item)[0].deaths?.toLocaleString()}</IonCol>
+              </IonRow>
+            ))}
+            <IonRow class="">
+              <IonCol>World</IonCol>
+              <IonCol><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
+              <IonCol>{confirmed?.toLocaleString()}</IonCol>
+              <IonCol>{recovered?.toLocaleString()}</IonCol>
+              <IonCol>{deaths?.toLocaleString()}</IonCol>
+            </IonRow>
+          </IonGrid>
         </IonCard>
       </IonContent>
-    </IonPage>
+    </IonPage >
   );
 };
 

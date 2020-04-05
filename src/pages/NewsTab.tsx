@@ -57,10 +57,10 @@ const NewsTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonToolbar>
-          <IonTitle class="pageTitle">Latest News Bulletins</IonTitle>
-        </IonToolbar>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest updates...'} />
+        <IonRow>
+          <IonCol class="pageTitle">Latest News Bulletins</IonCol>
+        </IonRow>
         <IonList>
           {data.map((news, idx) => (
             <IonItem key={idx}>

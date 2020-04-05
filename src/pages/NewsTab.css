@@ -3,7 +3,7 @@ ion-content {
 }
 
 ion-toolbar {
-  --background: var(--ion-color-apptheme);
+  --background: var(--ion-color-primary);
 }
 
 .appIcon {
@@ -15,8 +15,8 @@ ion-toolbar {
 }
 
 .pageTitle {
+  color: darkblue;
   text-align: center;
-  font-size: 17px;
 }
 
 .appDate {

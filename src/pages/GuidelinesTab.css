@@ -5,7 +5,7 @@ ion-content ion-toolbar {
 }
 
 ion-toolbar {
-  --background: var(--ion-color-apptheme);
+  --background: var(--ion-color-primary);
 }
 
 .appIcon {
@@ -20,4 +20,9 @@ ion-toolbar {
   text-align: right;
   font-weight: bolder;
   font-family: fantasy;
+}
+
+.pageTitle {
+  color: darkblue;
+  text-align: center;
 }

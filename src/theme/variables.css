@@ -3,14 +3,6 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
- /** app theme **/
-  --ion-color-apptheme: #28E5BA;
-  --ion-color-apptheme-rgb: 40, 229, 186;
-  --ion-color-apptheme-contrast: #ffffff;
-  --ion-color-apptheme-contrast-rgb: 255, 255, 255;
-  --ion-color-apptheme-shade: #85FFE3;
-  --ion-color-apptheme-tint: #00DBA8;
-
   /** primary **/
   --ion-color-primary: #28E5BA;
   --ion-color-primary-rgb: 40, 229, 186;

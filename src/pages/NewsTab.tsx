@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonList, IonItem, IonCard, IonCardSubtitle, IonCardContent, IonGrid } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import './NewsTab.css';
@@ -41,6 +41,10 @@ const NewsTab: React.FC = () => {
     getNewsData();
   }, []);
 
+  function trimSourceDetails(source: string): string {
+    return (source ? (source.split(' ')[1] ? source.split(' ')[0] + ' ' + source.split(' ')[1] : source.split(' ')[0]) : source);
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -54,7 +58,7 @@ const NewsTab: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonToolbar>
-          <IonTitle>Latest News</IonTitle>
+          <IonTitle class="pageTitle">Latest News Bulletins</IonTitle>
         </IonToolbar>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest updates...'} />
         <IonList>
@@ -62,13 +66,15 @@ const NewsTab: React.FC = () => {
             <IonItem key={idx}>
               <IonCard>
                 <IonImg src={news?.urlToImage} class="newsImage" ></IonImg>
-                <IonCardSubtitle>{news?.title}</IonCardSubtitle>
-                <IonRow>
-                  <IonCol>{news?.source?.name}</IonCol>
-                  <IonCol>By {news?.author}</IonCol>
-                  {/* <IonCol text-right>{moment(news?.publishedAt).format('DD MMM YYYY')}</IonCol> */}
-                </IonRow>
-                <IonCardContent>{news?.description}</IonCardContent>
+                <IonGrid>
+                  <IonRow class="newsTitle">{news?.title}</IonRow>
+                  <IonRow class="newsSource">
+                    <IonCol>{news?.source?.name}</IonCol>
+                    <IonCol>{trimSourceDetails(news?.author)}</IonCol>
+                    {/* <IonCol text-right>{moment(news?.publishedAt).format('DD MMM YYYY')}</IonCol> */}
+                  </IonRow>
+                  <IonRow class="newsContent">{news?.description}</IonRow>
+                </IonGrid>
               </IonCard>
             </IonItem>
           ))}

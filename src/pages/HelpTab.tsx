@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonButtons, IonButton } from '@ionic/react';
 import moment from 'moment';
 import ExploreContainer from '../components/ExploreContainer';
 import './HelpTab.css';
@@ -20,7 +20,12 @@ const HelpTab: React.FC = () => {
         <IonToolbar>
           <IonTitle>Help & Feedback</IonTitle>
         </IonToolbar>
-        <ExploreContainer name="Tab 1 page" />
+        <IonButtons>
+          <IonButton>https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate</IonButton>
+          <IonButton href="mailto:">Email to WHO</IonButton>
+          <IonButton href="tel:">Email to WHO</IonButton>
+          <IonButton>https://www.who.int/emergencies/diseases/novel-coronavirus-2019/donate</IonButton>
+        </IonButtons>
       </IonContent>
     </IonPage>
   );

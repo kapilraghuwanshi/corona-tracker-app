@@ -10,7 +10,7 @@ ion-toolbar {
   width: 30px;
 }
 
-.appTitle{
+.appTitle {
   font-weight: bolder;
   text-align: center;
 }
@@ -19,4 +19,81 @@ ion-toolbar {
   text-align: right;
   font-weight: bolder;
   font-family: fantasy;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 17px;
+}
+
+.casesBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  padding: 10px;
+}
+
+.totalCases {
+  background: rgba(198, 210, 220, 0.6);
+  color: #6c757d;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.confirmedBox {
+  background: rgba(0, 123, 255, 0.0627451);
+  color: #007bff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.recoveredBox {
+  background: rgba(55, 234, 97, 0.6);
+  color: #127729;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.deathsBox {
+  background: rgba(255, 7, 58, 0.12549);
+  color: #ff073a;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.pieCard {
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.tipsSlides {
+  background: #e0dcf7;
+  font-family: serif;
+  padding-top: 10px;
+  color: #2b2bf5;
 }

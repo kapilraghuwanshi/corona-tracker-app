@@ -48,7 +48,7 @@ const App: React.FC = () => (
           <Route path="/help" component={HelpTab} />
           <Route path="/" render={() => <Redirect to="/world" />} exact={true} />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" color="success">
+        <IonTabBar slot="bottom" >
           <IonTabButton tab="WorldTab" href="/world">
             <IonIcon icon={planet} />
             <IonLabel>World</IonLabel>

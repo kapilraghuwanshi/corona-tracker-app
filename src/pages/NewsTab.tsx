@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonList, IonItem, IonCard, IonCardSubtitle, IonCardContent, IonGrid } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonList, IonItem, IonCard, IonGrid } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import './NewsTab.css';
@@ -33,7 +33,7 @@ const NewsTab: React.FC = () => {
   useEffect(() => {
     const getNewsData = async () => {
       const result = await axios('http://newsapi.org/v2/everything?q=coronavirus&sortBy=publishedAt&apiKey=e9052d3beea84071b88f4f55e12f9fe1&language=en');
-      console.log(result);
+      // console.log(result);
       setData(result.data.articles);
       setShowLoading(false);
     };

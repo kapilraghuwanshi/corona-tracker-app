@@ -18,7 +18,7 @@ const WorldTab: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonToolbar>
-          <IonTitle>Latest Guidelines</IonTitle>
+          <IonTitle>Advisory & Guidelines</IonTitle>
         </IonToolbar>
         <ExploreContainer name="Tab 1 page" />
       </IonContent>

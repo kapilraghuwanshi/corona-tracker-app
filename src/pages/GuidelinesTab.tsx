@@ -1,7 +1,6 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg, IonRow, IonCol } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonImg, IonRow, IonCol, IonList, IonCard, IonCardHeader } from '@ionic/react';
 import moment from 'moment';
-import ExploreContainer from '../components/ExploreContainer';
 import './WorldTab.css';
 
 const WorldTab: React.FC = () => {
@@ -20,6 +19,20 @@ const WorldTab: React.FC = () => {
         <IonRow>
           <IonCol class="pageTitle">Advisory & Guidelines</IonCol>
         </IonRow>
+        <IonList>
+          <IonCard>
+            <IonCardHeader>Covid-19 Symptoms</IonCardHeader>
+            <IonImg src="assets/images/Symptoms2.png"></IonImg>
+          </IonCard>
+          <IonCard>
+            <IonCardHeader>Covid-19 Diseases</IonCardHeader>
+            <IonImg src="assets/images/Symptoms.png"></IonImg>
+          </IonCard>
+          <IonCard>
+            <IonCardHeader>Stress Distraction Tips</IonCardHeader>
+            <IonImg src="assets/images/Stress.jpg"></IonImg>
+          </IonCard>
+        </IonList>
       </IonContent>
     </IonPage>
   );

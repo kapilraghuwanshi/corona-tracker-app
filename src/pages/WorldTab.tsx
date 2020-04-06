@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg, IonRow, IonCol, IonList, IonItem, IonLoading, IonCard, IonSlides, IonSlide, IonLabel, IonGrid } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonImg, IonRow, IonCol, IonLoading, IonCard, IonSlides, IonSlide, IonGrid } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import { Pie, } from 'react-chartjs-2';
@@ -126,8 +126,8 @@ const WorldTab: React.FC = () => {
               plugins: {
                 datalabels: {
                   anchor: 'end',
-                  clamp:'true',
-                  align:'bottom',
+                  clamp: 'true',
+                  align: 'bottom',
                   color: 'black',
                   labels: {
                     title: {
@@ -184,6 +184,9 @@ const WorldTab: React.FC = () => {
             </IonRow>
           </IonGrid>
         </IonCard>
+        <IonRow>
+          <IonCol class="pageTitle">#StayHomeStaySafe</IonCol>
+        </IonRow>
       </IonContent>
     </IonPage >
   );

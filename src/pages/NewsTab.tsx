@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonList, IonItem, IonCard, IonGrid } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonList, IonItem, IonCard, IonGrid } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import './NewsTab.css';
@@ -80,6 +80,9 @@ const NewsTab: React.FC = () => {
           ))}
         </IonList>
       </IonContent>
+      <IonRow>
+        <IonCol class="pageTitle">#StayAlertedStaySafe</IonCol>
+      </IonRow>
     </IonPage>
   );
 };

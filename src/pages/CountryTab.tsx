@@ -21,17 +21,16 @@ interface ICases {
   recovered: number;
 }
 
-const state = {
-  labels: ['January', 'February', 'March', 'April'],
-  datasets: [
-    {
-      label: 'Cases',
-      backgroundColor: 'rgba(75,192,192,1)',
-      borderColor: 'rgba(0,0,0,1)',
-      borderWidth: 2,
-      data: [65, 59, 80, 81]
-    }
-  ]
+interface ICountryTimeSeries {
+  count: number;
+  results: ISeriesCases[];
+}
+
+interface ISeriesCases {
+  date: string;
+  confirmed: number;
+  deaths: number;
+  recovered: number;
 }
 
 const CountryTab: React.FC = () => {
@@ -41,7 +40,7 @@ const CountryTab: React.FC = () => {
   useEffect(() => {
     const getCountryData = async () => {
       const result = await axios('https://covidapi.info/api/v1/country/IND/latest');
-      console.log(result);
+      // console.log(result);
       setcountryData(result.data.result);
       setShowLoading(false);
     };
@@ -78,6 +77,59 @@ const CountryTab: React.FC = () => {
     ]
   }
 
+  const [countryTimeSeriesData, setcountryTimeSeriesData] = useState<ISeriesCases[]>([]);
+  let endDate: string = new Date().toISOString().split('T')[0];
+  let todaysDate = new Date();
+  let startDate: string = new Date(todaysDate.getTime() - (5 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
+
+  useEffect(() => {
+    const getCountryTimeSeriesData = async () => {
+      const result = await axios('https://covidapi.info/api/v1/country/IND/timeseries/' + startDate + '/' + endDate);
+      // console.log(result);
+      setcountryTimeSeriesData(result.data.result);
+      setShowLoading(false);
+    };
+
+    getCountryTimeSeriesData();
+  }, [endDate, startDate]);
+
+  let dateArr: Array<string> = [];
+  let confirmedArr: Array<number> = [];
+  let recoveredArr: Array<number> = [];
+  let deathsArr: Array<number> = [];
+  countryTimeSeriesData.forEach((ele, idx) => {
+    dateArr.push(ele.date);
+    confirmedArr.push(ele.confirmed);
+    recoveredArr.push(ele.recovered);
+    deathsArr.push(ele.deaths);
+  });
+
+  const countryBarChart = {
+    labels: [moment(dateArr[0]).format('MMMM Do'), moment(dateArr[1]).format('MMMM Do'), moment(dateArr[2]).format('MMMM Do'), moment(dateArr[3]).format('MMMM Do'), moment(dateArr[4]).format('MMMM Do')],
+    datasets: [
+      {
+        label: 'Confirmed',
+        backgroundColor: '#4399F6',
+        borderColor: '#007bff',
+        borderWidth: 1,
+        data: [confirmedArr[0], confirmedArr[1], confirmedArr[2], confirmedArr[3], confirmedArr[4]]
+      },
+      {
+        label: 'Recovered',
+        backgroundColor: '#37EA61',
+        borderColor: '#127729',
+        borderWidth: 1,
+        data: [recoveredArr[0], recoveredArr[1], recoveredArr[2], recoveredArr[3], recoveredArr[4]]
+      },
+      {
+        label: 'Deaths',
+        backgroundColor: '#F34943',
+        borderColor: '#ff073a',
+        borderWidth: 1,
+        data: [deathsArr[0], deathsArr[1], deathsArr[2], deathsArr[3], deathsArr[4]]
+      }
+    ]
+  }
 
   return (
     <IonPage>
@@ -128,20 +180,36 @@ const CountryTab: React.FC = () => {
         </IonCard>
         <IonCard>
           <Bar
-            data={state}
+            data={countryBarChart}
             options={{
+              scales: {
+                xAxes: [{
+                  stacked: true
+                }],
+                yAxes: [{
+                  stacked: true
+                }]
+              },
               title: {
                 display: true,
-                text: 'Average Rainfall per month',
-                fontSize: 20
+                text: 'Cases in the current week',
+                fontSize: 15
               },
               legend: {
                 display: true,
-                position: 'right'
+                position: 'bottom'
+              },
+              plugins: {
+                datalabels: {
+                  display: 'false'
+                }
               }
             }}
           />
         </IonCard>
+        <IonRow>
+          <IonCol class="pageTitle">#StayHomeStaySafe</IonCol>
+        </IonRow>
       </IonContent>
     </IonPage>
   )

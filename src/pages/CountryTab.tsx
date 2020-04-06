@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import './CountryTab.css';
+import { AddNumFunc } from './WorldTab';
 
-interface ICountries {
-  countryName: Array<ICases>;
+interface ICountryCount {
+  count: number;
+  result: {
+    todaysDate: {
+      [caseName: string]: ICases
+    };
+  };
 }
 
 interface ICases {
-  date: string;
   confirmed: number;
   deaths: number;
   recovered: number;
@@ -30,43 +35,49 @@ const state = {
 }
 
 const CountryTab: React.FC = () => {
-  const [data, setData] = useState<ICases[]>([]);
+  const [countryData, setcountryData] = useState<ICountryCount>();
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     const getCountryData = async () => {
-      const result = await axios('https://pomber.github.io/covid19/timeseries.json');
+      const result = await axios('https://covidapi.info/api/v1/country/IND/latest');
       console.log(result);
-      setData(result.data);
+      setcountryData(result.data.result);
       setShowLoading(false);
     };
 
     getCountryData();
   }, []);
 
-  console.log(data[60]);
+  let confirmed, recovered, deaths: number = 0;
+  if (countryData) {
+    confirmed = Object.values(countryData)[0]?.confirmed;
+    recovered = Object.values(countryData)[0]?.recovered;
+    deaths = Object.values(countryData)[0]?.deaths;
+  }
 
-  const TotalCasesPieChart = {
-    labels: ['Total', 'Confirmed', 'Recovered', 'Deaths'],
+  const CountryDoughnutChart = {
+    labels: ['Confirmed', 'Recovered', 'Deaths'],
     datasets: [
       {
-        label: 'Covid-19',
+        labels: {
+          render: 'value'
+        },
         backgroundColor: [
-          '#ff073a',
-          '#007bff',
-          '#28a745',
-          '#6c757d'
+          '#4399F6',
+          '#37EA61',
+          '#F34943'
         ],
         hoverBackgroundColor: [
-          '#AD0E2E',
-          '#0B55A5',
-          '#0C6A21',
-          '#3E454B'
+          '#007bff',
+          '#127729',
+          '#ff073a'
         ],
-        data: [65, 59, 80, 81]
+        data: [confirmed, recovered, deaths]
       }
     ]
   }
+
 
   return (
     <IonPage>
@@ -80,16 +91,38 @@ const CountryTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching total cases...'} />
+        <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest count for your country...'} />
         <IonRow>
           <IonCol class="pageTitle">India COVID19 Cases</IonCol>
         </IonRow>
+        <IonRow class="casesBox">
+          <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
+          <IonCol class="confirmedBox">Confirmed {confirmed?.toLocaleString()}</IonCol>
+          <IonCol class="recoveredBox">Recovered {recovered?.toLocaleString()}</IonCol>
+          <IonCol class="deathsBox">Deaths {deaths?.toLocaleString()}</IonCol>
+        </IonRow>
         <IonCard>
-          <Doughnut data={TotalCasesPieChart}
+          <Doughnut
+            data={CountryDoughnutChart}
             options={{
               legend: {
                 display: true,
                 position: 'right'
+              },
+              plugins: {
+                datalabels: {
+                  anchor: 'center',
+                  clamp: 'true',
+                  align: 'center',
+                  color: 'black',
+                  labels: {
+                    title: {
+                      font: {
+                        weight: ''
+                      }
+                    }
+                  }
+                }
               }
             }} />
         </IonCard>
@@ -111,7 +144,7 @@ const CountryTab: React.FC = () => {
         </IonCard>
       </IonContent>
     </IonPage>
-  );
+  )
 };
 
 export default CountryTab;

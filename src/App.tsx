@@ -11,6 +11,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { planet, home, newspaper, call, informationCircleOutline } from 'ionicons/icons';
+import 'chartjs-plugin-datalabels';
 import WorldTab from './pages/WorldTab';
 import CountryTab from './pages/CountryTab';
 import NewsTab from './pages/NewsTab';

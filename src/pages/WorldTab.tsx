@@ -35,7 +35,7 @@ const slideOpts = {
   autoplay: true
 };
 
-function AddNumFunc(props: any) {
+export function AddNumFunc(props: any) {
   return (props.a + props.b + props.c).toLocaleString();
 }
 
@@ -112,7 +112,7 @@ const WorldTab: React.FC = () => {
         <IonRow class="casesBox">
           <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
           <IonCol class="confirmedBox">Confirmed {confirmed?.toLocaleString()}</IonCol>
-          <IonCol class="recoveredBox">Recoverd {recovered?.toLocaleString()}</IonCol>
+          <IonCol class="recoveredBox">Recovered {recovered?.toLocaleString()}</IonCol>
           <IonCol class="deathsBox">Deaths {deaths?.toLocaleString()}</IonCol>
         </IonRow>
 
@@ -122,6 +122,21 @@ const WorldTab: React.FC = () => {
               legend: {
                 display: true,
                 position: 'bottom',
+              },
+              plugins: {
+                datalabels: {
+                  anchor: 'end',
+                  clamp:'true',
+                  align:'bottom',
+                  color: 'black',
+                  labels: {
+                    title: {
+                      font: {
+                        weight: 'bold'
+                      }
+                    }
+                  }
+                }
               }
             }} />
         </IonCard>
@@ -144,7 +159,7 @@ const WorldTab: React.FC = () => {
         </IonSlides>
         <IonCard>
           <IonGrid>
-            <IonRow class="">
+            <IonRow class="tableTitle">
               <IonCol>Place</IonCol>
               <IonCol>Total</IonCol>
               <IonCol>Active</IonCol>
@@ -160,7 +175,7 @@ const WorldTab: React.FC = () => {
                 <IonCol>{Object.values(item)[0].deaths?.toLocaleString()}</IonCol>
               </IonRow>
             ))}
-            <IonRow class="">
+            <IonRow class="tableTitle">
               <IonCol>World</IonCol>
               <IonCol><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
               <IonCol>{confirmed?.toLocaleString()}</IonCol>

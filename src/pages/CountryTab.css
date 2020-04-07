@@ -10,7 +10,7 @@ ion-toolbar {
   width: 30px;
 }
 
-.appTitle{
+.appTitle {
   font-weight: bolder;
 }
 
@@ -20,7 +20,23 @@ ion-toolbar {
   font-family: fantasy;
 }
 
-.pageTitle {
+.countryTitle {
   color: darkblue;
-  text-align: center;
+  text-align: right;
+}
+
+.selectTitle {
+  color: darkblue;
+  text-align: left;
+}
+
+ion-select {
+  padding: 0px;
+  max-width: 80%;
+}
+
+.changeButton {
+  color: darkblue;
+  text-align: left;
+  font-size: 15px;
 }

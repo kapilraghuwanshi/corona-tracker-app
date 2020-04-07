@@ -53,11 +53,11 @@
     },
     {
         "code": "ATF",
-        "name": "French Southern Territories"
+        "name": "French S T"
     },
     {
         "code": "ATG",
-        "name": "Antigua and Barbuda"
+        "name": "Antigua Barbuda"
     },
     {
         "code": "AUS",
@@ -185,11 +185,11 @@
     },
     {
         "code": "COD",
-        "name": "Congo"
+        "name": "Democratic Congo"
     },
     {
         "code": "COG",
-        "name": "Congo"
+        "name": "Republic Congo"
     },
     {
         "code": "COK",
@@ -481,11 +481,11 @@
     },
     {
         "code": "KNA",
-        "name": "Saint Kitts and Nevis"
+        "name": "Saint Kitts Nevis"
     },
     {
         "code": "KOR",
-        "name": "Republic of Korea"
+        "name": "South Korea"
     },
     {
         "code": "KWT",
@@ -597,7 +597,7 @@
     },
     {
         "code": "MNP",
-        "name": "NorthernMariana Islands"
+        "name": "Mariana Islands"
     },
     {
         "code": "MOZ",
@@ -709,7 +709,7 @@
     },
     {
         "code": "PNG",
-        "name": "Papua New Guinea"
+        "name": "Papua Guinea"
     },
     {
         "code": "POL",
@@ -721,7 +721,7 @@
     },
     {
         "code": "PRK",
-        "name": "Korea"
+        "name": "North Korea"
     },
     {
         "code": "PRT",
@@ -753,7 +753,7 @@
     },
     {
         "code": "RUS",
-        "name": "Russian Federation"
+        "name": "Russia"
     },
     {
         "code": "RWA",
@@ -785,7 +785,7 @@
     },
     {
         "code": "SJM",
-        "name": "SvalbardandJanMayen"
+        "name": "Svalbard JanMayen"
     },
     {
         "code": "SLB",
@@ -809,7 +809,7 @@
     },
     {
         "code": "SPM",
-        "name": "Saint Pierre and Miquelon"
+        "name": "Saint Pierre Miquelon"
     },
     {
         "code": "SRB",
@@ -817,7 +817,7 @@
     },
     {
         "code": "STP",
-        "name": "Sao Tome and Principe"
+        "name": "Sao Tome Principe"
     },
     {
         "code": "SUR",
@@ -849,7 +849,7 @@
     },
     {
         "code": "TCA",
-        "name": "Turks and Caicos Islands"
+        "name": "Turks Caicos Islands"
     },
     {
         "code": "TCD",
@@ -945,11 +945,11 @@
     },
     {
         "code": "VGB",
-        "name": "Virgin Islands,British"
+        "name": "Virgin Islands"
     },
     {
         "code": "VIR",
-        "name": "Virgin Islands,U.S."
+        "name": "US Virgin Island"
     },
     {
         "code": "VNM",
@@ -961,7 +961,7 @@
     },
     {
         "code": "WLF",
-        "name": "Wallis and Futuna"
+        "name": "Wallis Futuna"
     },
     {
         "code": "WSM",
@@ -993,10 +993,10 @@
     },
     {
         "code": "MSZ",
-        "name": "Angola"
+        "name": "Namibe"
     },
     {
         "code": "WBG",
-        "name": "West Bank/Gaza Strip"
+        "name": "Bank/Gaza Strip"
     }
 ]

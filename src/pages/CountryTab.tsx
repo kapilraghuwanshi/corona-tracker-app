@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard, IonButton, IonPopover, IonSelectPopover } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard, IonSelect, IonSelectOption } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import './CountryTab.css';
 import { AddNumFunc } from './WorldTab';
 import 'chartjs-plugin-datalabels';
+import { Plugins } from '@capacitor/core';
+const { Storage } = Plugins;
 
 interface ICountryCount {
   count: number;
@@ -34,23 +36,28 @@ interface ISeriesCases {
   recovered: number;
 }
 
-let selectedCountry: string;
-
 const CountryTab: React.FC = () => {
-  const [showPopover, setShowPopover] = useState(false);
+  const [yourCountry, setYourCountry] = useState<string>('IND');
+  Storage.set({ key: 'yourCountry', value: yourCountry });
   const [countryData, setcountryData] = useState<ICountryCount>();
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     const getCountryData = async () => {
-      const result = await axios('https://covidapi.info/api/v1/country/IND/latest');
+      let result: any = '';
+      const { value } = await Storage.get({ key: 'yourCountry' });
+      if (value) {
+        result = await axios('https://covidapi.info/api/v1/country/' + value + '/latest');
+      } else {
+        result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/latest');
+      }
       // console.log(result);
       setcountryData(result.data.result);
       setShowLoading(false);
     };
 
     getCountryData();
-  }, []);
+  }, [yourCountry]);
 
   let confirmed, recovered, deaths: number = 0;
   if (countryData) {
@@ -88,14 +95,14 @@ const CountryTab: React.FC = () => {
 
   useEffect(() => {
     const getCountryTimeSeriesData = async () => {
-      const result = await axios('https://covidapi.info/api/v1/country/IND/timeseries/' + startDate + '/' + endDate);
+      const result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/timeseries/' + startDate + '/' + endDate);
       // console.log(result);
       setcountryTimeSeriesData(result.data.result);
       setShowLoading(false);
     };
 
     getCountryTimeSeriesData();
-  }, [endDate, startDate]);
+  }, [yourCountry ,endDate, startDate]);
 
   let dateArr: Array<string> = [];
   let confirmedArr: Array<number> = [];
@@ -135,6 +142,11 @@ const CountryTab: React.FC = () => {
     ]
   }
 
+  const customPopoverOptions = {
+    header: 'Select your country',
+    translucent: false
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -149,12 +161,42 @@ const CountryTab: React.FC = () => {
       <IonContent>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest count for your country...'} />
         <IonRow>
-          <IonCol class="pageTitle"> COVID19 Cases in {selectedCountry}</IonCol>
-          <IonPopover isOpen={showPopover} onDidDismiss={e => setShowPopover(false)}>
-            <p>This is popover content</p>
-          </IonPopover>
-          <IonSelectPopover>kp</IonSelectPopover>
-          <IonButton onClick={() => setShowPopover(true)}>Show Popover</IonButton>
+          <IonCol size="5" sizeSm="6" class="countryTitle"> COVID19 Cases in</IonCol>
+          <IonCol size="5" sizeSm="6" class="selectTitle">
+            <IonSelect interfaceOptions={customPopoverOptions} interface="popover" value={yourCountry}
+              onIonChange={(e) => { setYourCountry(e.detail.value); }}>
+              <IonSelectOption value="IND">India</IonSelectOption>
+              <IonSelectOption value="USA">United States</IonSelectOption>
+              <IonSelectOption value="ARE">UAE</IonSelectOption>
+              <IonSelectOption value="FRA">France</IonSelectOption>
+              <IonSelectOption value="ESP">Spain</IonSelectOption>
+              <IonSelectOption value="ITA">Italy</IonSelectOption>
+              <IonSelectOption value="DEU">Germany</IonSelectOption>
+              <IonSelectOption value="CHN">China</IonSelectOption>
+              <IonSelectOption value="JPN">Japan</IonSelectOption>
+              <IonSelectOption value="ZAF">South Africa</IonSelectOption>
+              <IonSelectOption value="KOR">South Korea</IonSelectOption>
+              <IonSelectOption value="CAN">Canada</IonSelectOption>
+              <IonSelectOption value="BRA">Brazil</IonSelectOption>
+              <IonSelectOption value="ARG">Argentina</IonSelectOption>
+              <IonSelectOption value="PAK">Pakistan</IonSelectOption>
+              <IonSelectOption value="CHE">Switzerland</IonSelectOption>
+              <IonSelectOption value="IRN">Iran</IonSelectOption>
+              <IonSelectOption value="GBR">United Kingdom</IonSelectOption>
+              <IonSelectOption value="TUR">Turkey</IonSelectOption>
+              <IonSelectOption value="NLD">Netherland</IonSelectOption>
+              <IonSelectOption value="RUS">Russia</IonSelectOption>
+              <IonSelectOption value="PRT">Portugal</IonSelectOption>
+              <IonSelectOption value="ISR">Israel</IonSelectOption>
+              <IonSelectOption value="SWE">Sweden</IonSelectOption>
+              <IonSelectOption value="AUS">Australia</IonSelectOption>
+              <IonSelectOption value="AUT">Austria</IonSelectOption>
+              <IonSelectOption value="NZL">New Zealand</IonSelectOption>
+              <IonSelectOption value="SGP">Singapore</IonSelectOption>
+              <IonSelectOption value="MYS">Malaysia</IonSelectOption>
+            </IonSelect>
+          </IonCol>
+          <IonCol size="2" sizeSm="0" class="changeButton">change</IonCol>
         </IonRow>
         <IonRow class="casesBox">
           <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
@@ -172,14 +214,15 @@ const CountryTab: React.FC = () => {
               },
               plugins: {
                 datalabels: {
-                  anchor: 'center',
+                  anchor: 'bottom',
                   clamp: 'true',
-                  align: 'center',
+                  align: 'end',
                   color: 'black',
                   labels: {
                     title: {
                       font: {
-                        weight: ''
+                        weight: 'bold',
+                        size:10
                       }
                     }
                   }

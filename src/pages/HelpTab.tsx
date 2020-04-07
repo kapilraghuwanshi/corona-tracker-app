@@ -31,8 +31,8 @@ const HelpTab: React.FC = () => {
               <IonButton color='warning' href="mailto:mediainquiries@who.int"><IonIcon slot="start" icon={mailOutline} /> Email</IonButton>
             </IonItem>
             <IonItem>
-              <IonLabel>WhatsApp WHO Team</IonLabel>
-              <IonButton color='warning' href="wa.me/41798931892?text=hi"><IonIcon slot="start" icon={logoWhatsapp} /> WhatsApp</IonButton>
+              <IonLabel>Text 'Hi' to WHO helpdesk</IonLabel>
+              <IonButton color='warning' href="https://api.whatsapp.com/send?phone=41798931892&text=hi&source=&data="><IonIcon slot="start" icon={logoWhatsapp} /> WhatsApp</IonButton>
             </IonItem>
             <IonItem>
               <IonLabel>Donate via WHO website</IonLabel>
@@ -40,7 +40,17 @@ const HelpTab: React.FC = () => {
             </IonItem>
           </IonList>
         </IonCard>
-
+        <IonRow>
+          <IonCol class="pageTitle">Our Mission and Purpose<span role="img" aria-label="love">💖</span></IonCol>
+        </IonRow>
+        <IonCard>
+          <IonCardContent class="messageContent">
+            Cortona Tracker is cross platform handy app for checking latest numbers, getting updated news, reading official guidelines and other help. <br />
+            We dedicate this app to the Doctors, Health workers, Police men and all Corona Warriors around the globe who are helping us against this global pandemic.
+            <span role="img" aria-label="hand">🙏</span> <br/>
+            This app is using COVID19 dataset by John Hopkins University.
+          </IonCardContent>
+        </IonCard>
         <IonRow>
           <IonCol class="pageTitle">Connect with Kia Labs development team</IonCol>
         </IonRow>
@@ -55,16 +65,6 @@ const HelpTab: React.FC = () => {
               <IonButton color='tertiary' href="https://about.me/kialabs"><IonIcon slot="start" icon={logoWebComponent} /> Visit About Us</IonButton>
             </IonItem>
           </IonList>
-        </IonCard>
-        <IonRow>
-          <IonCol class="pageTitle">Our Mission and Purpose<span role="img" aria-label="donut">💖</span></IonCol>
-        </IonRow>
-        <IonCard>
-          <IonCardContent>
-            Cortona Tracker is cross platform handy app for checking latest numbers, getting updated news, reading official guidelines and other help. <br />
-            We dedicate this app to the Doctors, Health workers, Police men and all Corona Warriors around the globe who are helping us against this global pandemic.
-            <span role="img" aria-label="donut">🙏</span>
-          </IonCardContent>
         </IonCard>
       </IonContent>
       <IonRow>

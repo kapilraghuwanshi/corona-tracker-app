@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard, IonButton, IonPopover, IonSelectPopover } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
 import { Bar, Doughnut } from 'react-chartjs-2';
@@ -33,7 +33,10 @@ interface ISeriesCases {
   recovered: number;
 }
 
+let selectedCountry: string;
+
 const CountryTab: React.FC = () => {
+  const [showPopover, setShowPopover] = useState(false);
   const [countryData, setcountryData] = useState<ICountryCount>();
   const [showLoading, setShowLoading] = useState(true);
 
@@ -145,7 +148,12 @@ const CountryTab: React.FC = () => {
       <IonContent>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest count for your country...'} />
         <IonRow>
-          <IonCol class="pageTitle">India COVID19 Cases</IonCol>
+          <IonCol class="pageTitle"> COVID19 Cases in {selectedCountry}</IonCol>
+          <IonPopover isOpen={showPopover} onDidDismiss={e => setShowPopover(false)}>
+            <p>This is popover content</p>
+          </IonPopover>
+          <IonSelectPopover>kp</IonSelectPopover>
+          <IonButton onClick={() => setShowPopover(true)}>Show Popover</IonButton>
         </IonRow>
         <IonRow class="casesBox">
           <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>

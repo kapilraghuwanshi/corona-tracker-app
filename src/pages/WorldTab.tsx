@@ -39,10 +39,15 @@ export function AddNumFunc(props: any) {
   return (props.a + props.b + props.c).toLocaleString();
 }
 
-// function CountryCodeToNames(code: string): string {
-//   if 
-//   return ;
-// }
+function CountryCodesToNames(props: any): any {
+  let json = [{ key: "ABW", value: "Aruba" }, { key: "AFG", value: "Afghanistan" }];
+  json.forEach((item) => {
+    if (item.key.includes(props.code)) {
+      return item.value;
+    };
+    return item.key;
+  });
+}
 
 const WorldTab: React.FC = () => {
 
@@ -141,53 +146,51 @@ const WorldTab: React.FC = () => {
             }} />
         </IonCard>
         <IonSlides class="tipsSlides" options={slideOpts}>
-          <IonSlide>
+          <IonSlide class="slide">
             Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.
           </IonSlide>
-          <IonSlide>
+          <IonSlide class="slide">
             Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.
           </IonSlide>
-          <IonSlide>
+          <IonSlide class="slide">
             If you have fever, cough and difficulty breathing, seek medical care early.
           </IonSlide>
-          <IonSlide>
+          <IonSlide class="slide">
             Avoid touching eyes, nose and mouth. #StayHomeStaySafe
           </IonSlide>
-          <IonSlide>
+          <IonSlide class="slide">
             WHO Health Alert brings COVID-19 facts to billions via WhatsApp.
           </IonSlide>
         </IonSlides>
         <IonCard>
           <IonGrid>
             <IonRow class="tableTitle">
-              <IonCol>Place</IonCol>
-              <IonCol>Total</IonCol>
-              <IonCol>Active</IonCol>
-              <IonCol>Recovered</IonCol>
-              <IonCol>Deaths</IonCol>
+              <IonCol class="tableCountry">Country</IonCol>
+              <IonCol class="tableCol">Total</IonCol>
+              <IonCol class="tableCol">Active</IonCol>
+              <IonCol class="tableCol">Recovered</IonCol>
+              <IonCol class="tableCol">Deaths</IonCol>
             </IonRow>
             {countryWiseData.map((item, idx) => (
               <IonRow key={idx} >
-                <IonCol>{Object.keys(item)}</IonCol>
-                <IonCol><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
-                <IonCol>{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
-                <IonCol>{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
-                <IonCol>{Object.values(item)[0].deaths?.toLocaleString()}</IonCol>
+                {/* <IonCol><CountryCodesToNames code={Object.keys(item)} /></IonCol> */}
+                <IonCol class="tableCountry">{Object.keys(item)}</IonCol>
+                <IonCol class="tableCol"><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
+                <IonCol class="tableCol">{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
+                <IonCol class="tableCol">{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
+                <IonCol class="tableCol">{Object.values(item)[0].deaths?.toLocaleString()}</IonCol>
               </IonRow>
             ))}
-            <IonRow class="tableTitle">
-              <IonCol>World</IonCol>
-              <IonCol><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
-              <IonCol>{confirmed?.toLocaleString()}</IonCol>
-              <IonCol>{recovered?.toLocaleString()}</IonCol>
-              <IonCol>{deaths?.toLocaleString()}</IonCol>
-            </IonRow>
           </IonGrid>
         </IonCard>
-        <IonRow>
-          <IonCol class="pageTitle">#StayHomeStaySafe</IonCol>
-        </IonRow>
       </IonContent>
+      <IonRow class="tableFooter">
+        <IonCol class="tableCountry">World</IonCol>
+        <IonCol class="tableCol"><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
+        <IonCol class="tableCol">{confirmed?.toLocaleString()}</IonCol>
+        <IonCol class="tableCol">{recovered?.toLocaleString()}</IonCol>
+        <IonCol class="tableCol">{deaths?.toLocaleString()}</IonCol>
+      </IonRow>
     </IonPage >
   );
 };

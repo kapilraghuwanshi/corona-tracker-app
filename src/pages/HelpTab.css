@@ -24,3 +24,7 @@ ion-toolbar {
   color: darkblue;
   text-align: center;
 }
+
+.messageContent {
+  color: black;
+}

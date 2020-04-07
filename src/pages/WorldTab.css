@@ -94,10 +94,31 @@ ion-toolbar {
 .tipsSlides {
   background: #e0dcf7;
   font-family: serif;
-  padding-top: 10px;
+  height: 40px;
   color: #2b2bf5;
+}
+
+.slide {
+  font-size: 15px;
 }
 
 .tableTitle {
   color: darkblue;
+  font-size: 15px;
+}
+
+.tableCountry {
+  color: darkblue;
+  font-size: 12px;
+}
+
+.tableCol {
+  text-align: right;
+  font-size: 12px;
+}
+
+.tableFooter {
+  color: darkblue;
+  font-size: 15px;
+  margin: 10px;
 }

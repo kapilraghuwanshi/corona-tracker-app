@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonToolbar, IonImg, IonRow, IonCol, IonLoading, IonCard, IonSlides, IonSlide, IonGrid } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
-import { Pie, } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import './WorldTab.css';
+import codesToCountryNames from './../datafiles/Country3Codes.json';
 
 interface IGLobalCount {
   count: number;
@@ -27,6 +28,16 @@ interface ICountry {
   country: ICaseCount
 }
 
+interface ICountryCodeNamesJson {
+  countryCodes: ICountryCodeNames;
+}
+
+interface ICountryCodeNames {
+  code: string;
+  name: string;
+}
+
+
 const slideOpts = {
   initialSlide: 1,
   speed: 50,
@@ -39,14 +50,9 @@ export function AddNumFunc(props: any) {
   return (props.a + props.b + props.c).toLocaleString();
 }
 
-function CountryCodesToNames(props: any): any {
-  let json = [{ key: "ABW", value: "Aruba" }, { key: "AFG", value: "Afghanistan" }];
-  json.forEach((item) => {
-    if (item.key.includes(props.code)) {
-      return item.value;
-    };
-    return item.key;
-  });
+export function CountryCodesToNames(props: any): any {
+  let country: ICountryCodeNames = codesToCountryNames[codesToCountryNames.map(item => { return item.code; }).indexOf(props.code)];
+  return country ? country.name : props.code;
 }
 
 const WorldTab: React.FC = () => {
@@ -165,7 +171,7 @@ const WorldTab: React.FC = () => {
         <IonCard>
           <IonGrid>
             <IonRow class="tableTitle">
-              <IonCol class="tableCountry">Country</IonCol>
+              <IonCol col-4 class="tableCountry">Country</IonCol>
               <IonCol class="tableCol">Total</IonCol>
               <IonCol class="tableCol">Active</IonCol>
               <IonCol class="tableCol">Recovered</IonCol>
@@ -173,8 +179,7 @@ const WorldTab: React.FC = () => {
             </IonRow>
             {countryWiseData.map((item, idx) => (
               <IonRow key={idx} >
-                {/* <IonCol><CountryCodesToNames code={Object.keys(item)} /></IonCol> */}
-                <IonCol class="tableCountry">{Object.keys(item)}</IonCol>
+                <IonCol col-4  class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol>
                 <IonCol class="tableCol"><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
@@ -185,7 +190,7 @@ const WorldTab: React.FC = () => {
         </IonCard>
       </IonContent>
       <IonRow class="tableFooter">
-        <IonCol class="tableCountry">World</IonCol>
+        <IonCol col-4  class="tableCountry">World</IonCol>
         <IonCol class="tableCol"><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
         <IonCol class="tableCol">{confirmed?.toLocaleString()}</IonCol>
         <IonCol class="tableCol">{recovered?.toLocaleString()}</IonCol>

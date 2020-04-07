@@ -21,16 +21,21 @@ const WorldTab: React.FC = () => {
         </IonRow>
         <IonList>
           <IonCard>
+            <iframe title="WHO" width="100%" height="200" src="https://www.youtube.com/embed/5jD2xd3Cv80"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </IonCard>
+          <IonCard>
             <IonCardHeader>Covid-19 Symptoms</IonCardHeader>
-            <IonImg src="assets/images/Symptoms2.png"></IonImg>
+            <IonImg class="guidlineImages" src="assets/images/Symptoms2.png"></IonImg>
           </IonCard>
           <IonCard>
             <IonCardHeader>Covid-19 Diseases</IonCardHeader>
-            <IonImg src="assets/images/Symptoms.png"></IonImg>
+            <IonImg class="guidlineImages"  src="assets/images/Symptoms.png"></IonImg>
           </IonCard>
           <IonCard>
             <IonCardHeader>Stress Distraction Tips</IonCardHeader>
-            <IonImg src="assets/images/Stress.jpg"></IonImg>
+            <IonImg class="guidlineImages"  src="assets/images/Stress.jpg"></IonImg>
           </IonCard>
         </IonList>
       </IonContent>

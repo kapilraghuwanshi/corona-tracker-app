@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, IonLoading, IonCard, IonButton, IonPopover, IonSelectPopover } from '@ionic/react';
 import moment from 'moment';
 import axios from 'axios';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Doughnut, Bar } from 'react-chartjs-2';
 import './CountryTab.css';
 import { AddNumFunc } from './WorldTab';
+import 'chartjs-plugin-datalabels';
 
 interface ICountryCount {
   count: number;
@@ -208,9 +209,7 @@ const CountryTab: React.FC = () => {
                 position: 'bottom'
               },
               plugins: {
-                datalabels: {
-                  display: 'false'
-                }
+                datalabels: { display: false }
               }
             }}
           />

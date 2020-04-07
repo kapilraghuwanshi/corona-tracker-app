@@ -32,7 +32,7 @@ const NewsTab: React.FC = () => {
 
   useEffect(() => {
     const getNewsData = async () => {
-      const result = await axios('http://newsapi.org/v2/everything?q=coronavirus&sortBy=publishedAt&apiKey=e9052d3beea84071b88f4f55e12f9fe1&language=en');
+      const result = await axios('https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=e9052d3beea84071b88f4f55e12f9fe1');
       // console.log(result);
       setData(result.data.articles);
       setShowLoading(false);

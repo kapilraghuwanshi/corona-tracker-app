@@ -9,9 +9,9 @@ const WorldTab: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonRow>
-            <IonCol size="3"><IonImg class="appIcon" src="assets/icon/coronatracker_favicon.png" alt="WorldIcon"></IonImg></IonCol>
+            <IonCol><IonImg class="appIcon" src="assets/icon/coronatracker_favicon.png" alt="WorldIcon"></IonImg></IonCol>
             <IonCol class="appTitle">Corona Tracker</IonCol>
-            <IonCol size="3" class="appDate">{moment().format('MMMM Do')}</IonCol>
+            <IonCol class="appDate">{moment().format('MMMM Do')}</IonCol>
           </IonRow>
         </IonToolbar>
       </IonHeader>

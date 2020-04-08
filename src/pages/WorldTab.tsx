@@ -109,9 +109,9 @@ const WorldTab: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonRow>
-            <IonCol size="3"><IonImg class="appIcon" src="assets/icon/coronatracker_favicon.png" alt="WorldIcon"></IonImg></IonCol>
+            <IonCol><IonImg class="appIcon" src="assets/icon/coronatracker_favicon.png" alt="WorldIcon"></IonImg></IonCol>
             <IonCol class="appTitle">Corona Tracker</IonCol>
-            <IonCol size="3" class="appDate">{moment().format('MMMM Do')}</IonCol>
+            <IonCol class="appDate">{moment().format('MMMM Do')}</IonCol>
           </IonRow>
         </IonToolbar>
       </IonHeader>
@@ -179,7 +179,7 @@ const WorldTab: React.FC = () => {
             </IonRow>
             {countryWiseData.map((item, idx) => (
               <IonRow key={idx} >
-                <IonCol col-4  class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol>
+                <IonCol col-4 class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol>
                 <IonCol class="tableCol"><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
@@ -190,7 +190,7 @@ const WorldTab: React.FC = () => {
         </IonCard>
       </IonContent>
       <IonRow class="tableFooter">
-        <IonCol col-4  class="tableCountry">World</IonCol>
+        <IonCol col-4 class="tableCountry">World</IonCol>
         <IonCol class="tableCol"><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
         <IonCol class="tableCol">{confirmed?.toLocaleString()}</IonCol>
         <IonCol class="tableCol">{recovered?.toLocaleString()}</IonCol>

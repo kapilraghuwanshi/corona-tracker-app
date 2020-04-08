@@ -102,7 +102,7 @@ const CountryTab: React.FC = () => {
     };
 
     getCountryTimeSeriesData();
-  }, [yourCountry ,endDate, startDate]);
+  }, [yourCountry, endDate, startDate]);
 
   let dateArr: Array<string> = [];
   let confirmedArr: Array<number> = [];
@@ -152,9 +152,9 @@ const CountryTab: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonRow>
-            <IonCol size="3"><IonImg class="appIcon" src="assets/icon/coronatracker_favicon.png" alt="WorldIcon"></IonImg></IonCol>
+            <IonCol><IonImg class="appIcon" src="assets/icon/coronatracker_favicon.png" alt="WorldIcon"></IonImg></IonCol>
             <IonCol class="appTitle">Corona Tracker</IonCol>
-            <IonCol size="3" class="appDate">{moment().format('MMMM Do')}</IonCol>
+            <IonCol class="appDate">{moment().format('MMMM Do')}</IonCol>
           </IonRow>
         </IonToolbar>
       </IonHeader>
@@ -222,7 +222,7 @@ const CountryTab: React.FC = () => {
                     title: {
                       font: {
                         weight: 'bold',
-                        size:10
+                        size: 10
                       }
                     }
                   }

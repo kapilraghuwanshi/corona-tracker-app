@@ -3,6 +3,6 @@
   "appName": "Corona-Tracker",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "www",
+  "webDir": "build",
   "cordova": {}
 }

@@ -68,7 +68,7 @@ const HelpTab: React.FC = () => {
         </IonCard>
       </IonContent>
       <IonRow>
-        <IonCol class="pageTitle">#StayHomeStaySafe</IonCol>
+        <IonCol class="pageTitle">#WorldFightsCorona</IonCol>
       </IonRow>
     </IonPage>
   );

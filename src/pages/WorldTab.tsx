@@ -196,7 +196,7 @@ const WorldTab: React.FC = () => {
         <IonCol class="tableCol">{recovered?.toLocaleString()}</IonCol>
         <IonCol class="tableCol">{deaths?.toLocaleString()}</IonCol>
       </IonRow>
-    </IonPage >
+    </IonPage>
   );
 };
 

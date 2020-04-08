@@ -36,6 +36,6 @@ ion-select {
 
 .changeButton {
   color: darkblue;
-  text-align: left;
-  font-size: 15px;
+  text-align: center;
+  font-size: 12px;
 }

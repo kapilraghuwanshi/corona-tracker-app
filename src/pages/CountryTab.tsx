@@ -161,8 +161,8 @@ const CountryTab: React.FC = () => {
       <IonContent>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest count for your country...'} />
         <IonRow>
-          <IonCol size="5" sizeSm="6" class="countryTitle"> COVID19 Cases in</IonCol>
-          <IonCol size="5" sizeSm="6" class="selectTitle">
+          <IonCol size="5" class="countryTitle"> COVID19 Cases in</IonCol>
+          <IonCol size="5" class="selectTitle">
             <IonSelect interfaceOptions={customPopoverOptions} interface="popover" value={yourCountry}
               onIonChange={(e) => { setYourCountry(e.detail.value); }}>
               <IonSelectOption value="IND">India</IonSelectOption>
@@ -196,7 +196,7 @@ const CountryTab: React.FC = () => {
               <IonSelectOption value="MYS">Malaysia</IonSelectOption>
             </IonSelect>
           </IonCol>
-          <IonCol size="2" sizeSm="0" class="changeButton">change</IonCol>
+          <IonCol size="2" class="changeButton">change country</IonCol>
         </IonRow>
         <IonRow class="casesBox">
           <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>

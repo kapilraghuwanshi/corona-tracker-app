@@ -104,6 +104,7 @@ ion-toolbar {
 .tableTitle {
   color: darkblue;
   font-size: 15px;
+  background-color: aliceblue;
 }
 
 .tableCountry {
@@ -116,8 +117,13 @@ ion-toolbar {
   font-size: 12px;
 }
 
+.tableZebraStrip:nth-child(odd) {
+  background-color: var(--ion-color-light);
+}
+
 .tableFooter {
   color: darkblue;
   font-size: 15px;
   margin: 10px;
+  background-color: aliceblue;
 }

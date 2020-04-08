@@ -178,7 +178,7 @@ const WorldTab: React.FC = () => {
               <IonCol class="tableCol">Deaths</IonCol>
             </IonRow>
             {countryWiseData.map((item, idx) => (
-              <IonRow key={idx} >
+              <IonRow class="tableZebraStrip" key={idx} >
                 <IonCol col-4 class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol>
                 <IonCol class="tableCol"><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>

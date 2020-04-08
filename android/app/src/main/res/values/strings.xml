@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">corona-epidemic-tracker</string>
-    <string name="title_activity_main">corona-epidemic-tracker</string>
+    <string name="app_name">corona-tracker</string>
+    <string name="title_activity_main">corona-tracker</string>
     <string name="package_name">com.kialabs.coronatracker</string>
     <string name="custom_url_scheme">com.kialabs.coronatracker</string>
 </resources>

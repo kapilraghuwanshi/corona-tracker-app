@@ -26,20 +26,31 @@ const WorldTab: React.FC = () => {
             </iframe>
           </IonCard>
           <IonCard>
-            <IonCardHeader>Covid-19 Symptoms</IonCardHeader>
+            <IonCardHeader>Symptoms</IonCardHeader>
             <IonImg class="guidlineImages" src="assets/images/Symptoms2.png"></IonImg>
           </IonCard>
           <IonCard>
-            <IonCardHeader>Covid-19 Diseases</IonCardHeader>
-            <IonImg class="guidlineImages"  src="assets/images/Symptoms.png"></IonImg>
+            <IonCardHeader>Diseases</IonCardHeader>
+            <IonImg class="guidlineImages" src="assets/images/Symptoms.png"></IonImg>
+          </IonCard>
+          <IonCard>
+            <IonCardHeader>Myths Busted</IonCardHeader>
+            <IonImg class="guidlineImages" src="assets/images/Myth.jpeg"></IonImg>
           </IonCard>
           <IonCard>
             <IonCardHeader>Stress Distraction Tips</IonCardHeader>
-            <IonImg class="guidlineImages"  src="assets/images/Stress.jpg"></IonImg>
+            <IonImg class="guidlineImages" src="assets/images/Stress.jpg"></IonImg>
+          </IonCard>
+          <IonCard>
+            <IonCardHeader>Stay Home</IonCardHeader>
+            <IonImg class="guidlineImages" src="assets/images/SafeHands.jpeg"></IonImg>
           </IonCard>
         </IonList>
       </IonContent>
-    </IonPage>
+      <IonRow>
+        <IonCol class="pageTitle">#QuarantineAndChill</IonCol>3
+      </IonRow>
+    </IonPage >
   );
 };
 

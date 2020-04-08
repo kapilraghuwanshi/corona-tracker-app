@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "990312359918",
+    "firebase_url": "https://coronatracker-20efc.firebaseio.com",
+    "project_id": "coronatracker-20efc",
+    "storage_bucket": "coronatracker-20efc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990312359918:android:49bacca69dad8a5ecf90ff",
+        "android_client_info": {
+          "package_name": "com.kialabs.coronatracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990312359918-f96ap11v14dnt96efr3vo0ut3n14vlkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoQ-SK91ySOJfRjll0MrfGtU4ES_lOB-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990312359918-f96ap11v14dnt96efr3vo0ut3n14vlkv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "990312359918-tvjrcijs0h4ub1n0t29d5oocsupd0i90.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kialabs.coronatracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

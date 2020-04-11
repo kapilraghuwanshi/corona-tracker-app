@@ -48,7 +48,7 @@ const WorldTab: React.FC = () => {
         </IonList>
       </IonContent>
       <IonRow>
-        <IonCol class="pageTitle">#StayHealthyStaySafe</IonCol>3
+        <IonCol class="pageTitle">#StayHealthyStaySafe</IonCol>
       </IonRow>
     </IonPage >
   );

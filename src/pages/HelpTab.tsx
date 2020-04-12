@@ -48,7 +48,7 @@ const HelpTab: React.FC = () => {
             Cortona Tracker is cross platform handy app for checking latest numbers, getting updated news, reading official guidelines and other help. <br />
             We dedicate this app to the Doctors, Health workers, Police men and all Corona Warriors around the globe who are helping us against this global pandemic.
             <span role="img" aria-label="hand">🙏</span> <br />
-            This app is using COVID19 dataset by John Hopkins University.
+            This app is using COVID19 dataset by John Hopkins University and News from Newsapi.org.
           </IonCardContent>
         </IonCard>
         <IonRow>

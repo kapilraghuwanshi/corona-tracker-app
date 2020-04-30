@@ -55,6 +55,12 @@ export function CountryCodesToNames(props: any): any {
   return country ? country.name : props.code;
 }
 
+export function sortByTotalCases(props: any): any {
+  return props.sort((a: Object, b: Object) => {
+    return (Object.values(a)[0].confirmed > Object.values(b)[0].confirmed ? -1 : (Object.values(a)[0].confirmed < Object.values(b)[0].confirmed ? 1 : 0));
+  });
+}
+
 const WorldTab: React.FC = () => {
 
   const [data, setData] = useState<IGLobalCount>();
@@ -99,7 +105,12 @@ const WorldTab: React.FC = () => {
     const getGlobalCountryData = async () => {
       //latest global country wise count
       const result = await axios('https://covidapi.info/api/v1/global/latest');
-      setCountryWiseData(result.data.result);
+      //console.log(result.data.result);
+      let sortedResult = result.data.result;
+      sortedResult.sort((a: Object, b: Object) => {
+        return (Object.values(a)[0].confirmed > Object.values(b)[0].confirmed ? -1 : (Object.values(a)[0].confirmed < Object.values(b)[0].confirmed ? 1 : 0));
+      });
+      setCountryWiseData(sortedResult);
     };
     getGlobalCountryData();
   }, []);

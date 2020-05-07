@@ -6,8 +6,8 @@ android {
         applicationId "com.kialabs.coronatracker"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.0"
+        versionCode 7
+        versionName "2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

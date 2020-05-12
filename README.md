@@ -23,8 +23,8 @@ Click on the below link to watch the real time working app on Youtube-
 * Targeting - Android Pie 9, iOS 11.
 
 ### Cross Platform Emulator Snapshots
-* ![alt text](https://github.com/kapilraghuwanshi/corona-tracker-app/blob/master/CoronaHybridAppSnap2.png?raw=true)
+* ![alt text](https://github.com/kapilraghuwanshi/corona-tracker-app/blob/master/CoronaTrackerIcons/CoronaHybridAppSnap2.png?raw=true)
 
-* ![alt text](https://github.com/kapilraghuwanshi/corona-tracker-app/blob/master/CoronaHybridAppSnap3.png?raw=true)
+* ![alt text](https://github.com/kapilraghuwanshi/corona-tracker-app/blob/master/CoronaTrackerIcons/CoronaHybridAppSnap3.png?raw=true)
 
 [Fork](https://guides.github.com/activities/forking/) this repository to start adding your own features!

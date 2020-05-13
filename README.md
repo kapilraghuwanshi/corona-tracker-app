@@ -33,4 +33,7 @@ Click on the below link to watch the real time working app on Youtube-
 * Clone the forked repos to your local.
 * Go to the repo directory and run "npm install"
 * Run "ionic serve" and enjoy your own version of the app.
+* Create your own branch with proper feature name.
+* Complete the task, run it and test it.
+* Raise the pull request to merge your branch with the master branch here.
 

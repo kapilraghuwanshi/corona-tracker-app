@@ -27,4 +27,10 @@ Click on the below link to watch the real time working app on Youtube-
 
 * ![alt text](https://github.com/kapilraghuwanshi/corona-tracker-app/blob/master/CoronaTrackerIcons/CoronaHybridAppSnap3.png?raw=true)
 
-[Fork](https://guides.github.com/activities/forking/) this repository to start adding your own features!
+
+### [Fork](https://guides.github.com/activities/forking/) this repository to start adding your own features!
+* Press the Fork button here.
+* Clone the forked repos to your local.
+* Go to the repo directory and run "npm install"
+* Run "ionic serve" and enjoy your own version of the app.
+

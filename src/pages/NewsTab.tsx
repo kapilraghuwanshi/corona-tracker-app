@@ -3,6 +3,7 @@ import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, Ion
 import moment from 'moment';
 import axios from 'axios';
 import './NewsTab.css';
+import NEWS_API_KEY from '../newsApikey';
 
 interface INewsResponse {
   status: string;
@@ -32,7 +33,7 @@ const NewsTab: React.FC = () => {
 
   useEffect(() => {
     const getNewsData = async () => {
-      const result = await axios('https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=YOUR_OWN_KEY');
+      const result = await axios('https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=' + NEWS_API_KEY);
       // console.log(result);
       setData(result.data.articles);
       setShowLoading(false);

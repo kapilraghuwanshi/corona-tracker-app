@@ -46,8 +46,8 @@ const slideOpts = {
   autoplay: true
 };
 
-export function AddNumFunc(props: any) {
-  return (props.a + props.b + props.c).toLocaleString();
+export function CalculateActiveCases(props: any) {
+  return <React.Fragment>{(props.a - (props.b + props.c)).toLocaleString()}</React.Fragment>;
 }
 
 export function CountryCodesToNames(props: any): any {
@@ -132,8 +132,8 @@ const WorldTab: React.FC = () => {
           <IonCol class="pageTitle">COVID-19 Dashboard</IonCol>
         </IonRow>
         <IonRow class="casesBox">
-          <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
-          <IonCol class="confirmedBox">Confirmed {confirmed?.toLocaleString()}</IonCol>
+          <IonCol class="totalCases"> Confirmed {confirmed?.toLocaleString()}</IonCol>
+          <IonCol class="confirmedBox">Active <CalculateActiveCases a={confirmed} b={recovered} c={deaths} /></IonCol>
           <IonCol class="recoveredBox">Recovered {recovered?.toLocaleString()}</IonCol>
           <IonCol class="deathsBox">Deaths {deaths?.toLocaleString()}</IonCol>
         </IonRow>
@@ -183,7 +183,7 @@ const WorldTab: React.FC = () => {
           <IonGrid>
             <IonRow class="tableTitle">
               <IonCol col-4 class="tableCountry">Country</IonCol>
-              <IonCol class="tableCol">Total</IonCol>
+              <IonCol class="tableCol">Confirmed</IonCol>
               <IonCol class="tableCol">Active</IonCol>
               <IonCol class="tableCol">Recovered</IonCol>
               <IonCol class="tableCol">Deaths</IonCol>
@@ -191,8 +191,8 @@ const WorldTab: React.FC = () => {
             {countryWiseData.map((item, idx) => (
               <IonRow class="tableZebraStrip" key={idx} >
                 <IonCol col-4 class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol>
-                <IonCol class="tableCol"><AddNumFunc a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
+                <IonCol class="tableCol"><CalculateActiveCases a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
                 <IonCol class="tableCol">{Object.values(item)[0].deaths?.toLocaleString()}</IonCol>
               </IonRow>
@@ -202,8 +202,8 @@ const WorldTab: React.FC = () => {
       </IonContent>
       <IonRow class="tableFooter">
         <IonCol col-4 class="tableCountry">World</IonCol>
-        <IonCol class="tableCol"><AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
-        <IonCol class="tableCol">{confirmed?.toLocaleString()}</IonCol>
+        <IonCol class="tableCol">{confirmed?.toLocaleString()} </IonCol>
+        <IonCol class="tableCol"><CalculateActiveCases a={confirmed} b={recovered} c={deaths} /></IonCol>
         <IonCol class="tableCol">{recovered?.toLocaleString()}</IonCol>
         <IonCol class="tableCol">{deaths?.toLocaleString()}</IonCol>
       </IonRow>

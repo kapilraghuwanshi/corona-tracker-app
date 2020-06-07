@@ -4,7 +4,7 @@ import moment from 'moment';
 import axios from 'axios';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import './CountryTab.css';
-import { AddNumFunc } from './WorldTab';
+import { CalculateActiveCases } from './WorldTab';
 import 'chartjs-plugin-datalabels';
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
@@ -199,8 +199,8 @@ const CountryTab: React.FC = () => {
           <IonCol size="2" class="changeButton">change country</IonCol>
         </IonRow>
         <IonRow class="casesBox">
-          <IonCol class="totalCases">Total <AddNumFunc a={confirmed} b={recovered} c={deaths} /></IonCol>
-          <IonCol class="confirmedBox">Confirmed {confirmed?.toLocaleString()}</IonCol>
+          <IonCol class="totalCases">Confirmed {confirmed?.toLocaleString()}</IonCol>
+          <IonCol class="confirmedBox">Active <CalculateActiveCases a={confirmed} b={recovered} c={deaths} /></IonCol>
           <IonCol class="recoveredBox">Recovered {recovered?.toLocaleString()}</IonCol>
           <IonCol class="deathsBox">Deaths {deaths?.toLocaleString()}</IonCol>
         </IonRow>

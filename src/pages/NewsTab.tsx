@@ -12,19 +12,13 @@ interface INewsResponse {
 }
 
 interface IArticles {
-  source: ISource;
   author: string;
   title: string;
   description: string;
   url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
-}
-
-interface ISource {
-  id: string;
-  name: string;
+  image: string;
+  published: string;
+  category: [];
 }
 
 const NewsTab: React.FC = () => {
@@ -33,9 +27,10 @@ const NewsTab: React.FC = () => {
 
   useEffect(() => {
     const getNewsData = async () => {
-      const result = await axios('https://newsapi.org/v2/top-headlines?q=coronavirus&language=en&apiKey=' + NEWS_API_KEY);
+      // Changed News API from newsapi.org to currentsapi due to developer account's limits
+      const result = await axios('https://api.currentsapi.services/v1/search?q=coronavirus&q=covid19&language=en&apiKey=' + NEWS_API_KEY);
       // console.log(result);
-      setData(result.data.articles);
+      setData(result.data.news);
       setShowLoading(false);
     };
 
@@ -44,6 +39,14 @@ const NewsTab: React.FC = () => {
 
   function trimSourceDetails(source: string): string {
     return (source ? (source.split(' ')[1] ? source.split(' ')[0] + ' ' + source.split(' ')[1] : source.split(' ')[0]) : source);
+  }
+
+  function showImageIfExists(imageUrl: string): any {
+    if (imageUrl !== 'None') {
+      return <IonImg src={imageUrl} class="newsImage" ></IonImg>
+    } else {
+      return <IonImg src="assets/images/ImageNotAvailable.png" class="newsImage" ></IonImg>
+    }
   }
 
   return (
@@ -58,22 +61,22 @@ const NewsTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest updates...'} />
+        <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching latest news for you...'} />
         <IonRow>
-          <IonCol class="pageTitle">Latest News Bulletins</IonCol>
+          <IonCol class="pageTitle">Related News Bulletins</IonCol>
         </IonRow>
         <IonList>
           {data.map((news, idx) => (
             <IonItem key={idx}>
               <IonCard>
-                <IonImg src={news?.urlToImage} class="newsImage" ></IonImg>
                 <IonGrid>
                   <IonRow class="newsTitle">{news?.title}</IonRow>
                   <IonRow class="newsSource">
-                    <IonCol>{news?.source?.name}</IonCol>
+                    <IonCol>{news?.category}</IonCol>
                     <IonCol>{trimSourceDetails(news?.author)}</IonCol>
-                    {/* <IonCol text-right>{moment(news?.publishedAt).format('DD MMM YYYY')}</IonCol> */}
+                    <IonCol text-right>{moment(news?.published).format('DD MMM YYYY')}</IonCol>
                   </IonRow>
+                  <IonRow >{showImageIfExists(news.image)}</IonRow>
                   <IonRow class="newsContent">{news?.description}</IonRow>
                 </IonGrid>
               </IonCard>

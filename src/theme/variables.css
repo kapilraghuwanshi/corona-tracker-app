@@ -233,3 +233,22 @@ http://ionicframework.com/docs/theming/ */
   }
   
 }
+
+
+@media (min-width: 768px) {
+  ion-card {
+    padding: 0px 200px;
+  }
+}
+
+@media (min-width: 1100px) {
+  ion-card {
+    padding: 0px 400px;
+  }
+}
+
+@media (min-width: 1366px) {
+  ion-card {
+    padding: 0px 500px;
+  }
+}

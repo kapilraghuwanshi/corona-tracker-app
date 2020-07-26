@@ -29,6 +29,10 @@ ion-toolbar {
   height: 100%;
 }
 
+.newsImageNA{
+  height: 150px;
+}
+
 .newsTitle {
   color: rebeccapurple;
 }

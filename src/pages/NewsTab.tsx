@@ -45,7 +45,7 @@ const NewsTab: React.FC = () => {
     if (imageUrl !== 'None') {
       return <IonImg src={imageUrl} class="newsImage" ></IonImg>
     } else {
-      return <IonImg src="assets/images/ImageNotAvailable.png" class="newsImage" ></IonImg>
+      return <IonImg src="assets/images/ImageNotAvailable.png" class="newsImageNA" ></IonImg>
     }
   }
 

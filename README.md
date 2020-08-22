@@ -22,6 +22,12 @@ Click on the below link to watch the real time working app on Youtube-
 * Built on Cross Platform Hybrid App Technologies - A universal small sized mobile solution for everyone irrespective of availability of devices.
 * Targeting - Android Pie 9, iOS 11.
 
+### Complete Development Tutorials
+* https://www.freecodecamp.org/news/how-to-create-corona-tracker-app-in-3-days/
+
+* https://medium.com/@techygeeky/how-i-created-the-corona-tracker-app-in-just-3-days-day-0-b58eaf0ac379
+
+
 ### Cross Platform Emulator Snapshots
 * ![alt text](https://github.com/kapilraghuwanshi/corona-tracker-app/blob/master/CoronaTrackerIcons/CoronaHybridAppSnap2.png?raw=true)
 

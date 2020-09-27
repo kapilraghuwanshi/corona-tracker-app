@@ -1,4 +1,9 @@
 ## Corona Tracker📊 - Track the latest Corona Virus cases around you!
+![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/kapilraghuwanshi/corona-tracker-app/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://coronatracker-20efc.web.app/)
+[![GitHub forks](https://img.shields.io/github/forks/Naereen/StrapDown.js.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/kapilraghuwanshi/corona-tracker-app/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Naereen/StrapDown.js.svg?style=social&label=Star&maxAge=2592000)](https://github.com/kapilraghuwanshi/corona-tracker-app/stargazers)
 
 A universal, small-sized and handy cross platform mobile solution (android, iOS and web PWA) to track the COVID19 virus affected cases across the world through various illustrations. Get all the numbers🔢, news📃, advisory and all latest guidelines and help regarding the Novel Corona Virus.
 

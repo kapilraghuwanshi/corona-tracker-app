@@ -3,19 +3,33 @@ import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, Ion
 import moment from 'moment';
 import axios from 'axios';
 import { Doughnut, Bar } from 'react-chartjs-2';
+import {COVID_API_KEY} from '../ApiKeys'
 import './CountryTab.css';
 import { CalculateActiveCases } from './WorldTab';
 import 'chartjs-plugin-datalabels';
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
 
+
 interface ICountryCount {
-  count: number;
-  result: {
-    todaysDate: {
-      [caseName: string]: ICases
-    };
-  };
+    country: string,
+    cases:  ICaseCount;
+    deaths: IDeathsCount;
+  // count: number;
+  // result: {
+  //   todaysDate: {
+  //     [caseName: string]: ICases
+  //   };
+  // };
+}
+
+interface IDeathsCount {
+  total: number;
+}
+interface ICaseCount {
+  active: number;
+  recovered: number;
+  total: number;
 }
 
 interface ICases {
@@ -37,7 +51,7 @@ interface ISeriesCases {
 }
 
 const CountryTab: React.FC = () => {
-  const [yourCountry, setYourCountry] = useState<string>('IND');
+  const [yourCountry, setYourCountry] = useState<string>('India'); // by default India
   Storage.set({ key: 'yourCountry', value: yourCountry });
   const [countryData, setcountryData] = useState<ICountryCount>();
   const [showLoading, setShowLoading] = useState(true);
@@ -45,29 +59,43 @@ const CountryTab: React.FC = () => {
   useEffect(() => {
     const getCountryData = async () => {
       let result: any = '';
+      // fetch country from localStorage
       const { value } = await Storage.get({ key: 'yourCountry' });
       if (value) {
-        result = await axios('https://covidapi.info/api/v1/country/' + value + '/latest');
+        // result = await axios('https://covidapi.info/api/v1/country/' + value + '/latest');
+        result = await axios('https://covid-193.p.rapidapi.com/statistics?country='+ value, {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': COVID_API_KEY,
+        }
+      });
       } else {
-        result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/latest');
+        // result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/latest');
+        result = await axios('https://covid-193.p.rapidapi.com/statistics?country='+ yourCountry, {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': COVID_API_KEY,
+          }
+        });
       }
-      // console.log(result);
-      setcountryData(result.data.result);
+      console.log(result.data.response[0]);
+      setcountryData(result.data.response[0]);
       setShowLoading(false);
     };
 
     getCountryData();
   }, [yourCountry]);
 
-  let confirmed, recovered, deaths: number = 0;
+  let total, active, recovered, deaths: number = 0;
   if (countryData) {
-    confirmed = Object.values(countryData)[0]?.confirmed;
-    recovered = Object.values(countryData)[0]?.recovered;
-    deaths = Object.values(countryData)[0]?.deaths;
+    total = countryData?.cases.total;
+    active = countryData?.cases.active;
+    recovered = countryData?.cases?.recovered;
+    deaths = countryData?.deaths.total;
   }
 
   const CountryDoughnutChart = {
-    labels: ['Confirmed', 'Recovered', 'Deaths'],
+    labels: ['Active', 'Recovered', 'Deaths'],
     datasets: [
       {
         labels: {
@@ -83,7 +111,7 @@ const CountryTab: React.FC = () => {
           '#127729',
           '#ff073a'
         ],
-        data: [confirmed, recovered, deaths]
+        data: [active, recovered, deaths]
       }
     ]
   }
@@ -96,7 +124,7 @@ const CountryTab: React.FC = () => {
   useEffect(() => {
     const getCountryTimeSeriesData = async () => {
       const result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/timeseries/' + startDate + '/' + endDate);
-      // console.log(result);
+      console.log("country wise count", result);
       setcountryTimeSeriesData(result.data.result);
       setShowLoading(false);
     };
@@ -108,6 +136,7 @@ const CountryTab: React.FC = () => {
   let confirmedArr: Array<number> = [];
   let recoveredArr: Array<number> = [];
   let deathsArr: Array<number> = [];
+
   countryTimeSeriesData.forEach((ele, idx) => {
     dateArr.push(ele.date);
     confirmedArr.push(ele.confirmed);
@@ -199,8 +228,8 @@ const CountryTab: React.FC = () => {
           <IonCol size="2" class="changeButton">change country</IonCol>
         </IonRow>
         <IonRow class="casesBox">
-          <IonCol class="totalCases">Confirmed {confirmed?.toLocaleString()}</IonCol>
-          <IonCol class="confirmedBox">Active <CalculateActiveCases a={confirmed} b={recovered} c={deaths} /></IonCol>
+          <IonCol class="totalCases">Total {total?.toLocaleString()}</IonCol>
+          <IonCol class="confirmedBox">Active {active?.toLocaleString()}</IonCol>
           <IonCol class="recoveredBox">Recovered {recovered?.toLocaleString()}</IonCol>
           <IonCol class="deathsBox">Deaths {deaths?.toLocaleString()}</IonCol>
         </IonRow>

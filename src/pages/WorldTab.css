@@ -101,10 +101,15 @@ ion-toolbar {
   font-size: 15px;
 }
 
+.tableCountry {
+  text-align: left;
+}
+
 .tableTitle {
   color: darkblue;
   font-size: 15px;
   background-color: aliceblue;
+  text-align: center;
 }
 
 .tableCountry {
@@ -113,7 +118,7 @@ ion-toolbar {
 }
 
 .tableCol {
-  text-align: right;
+  text-align: center;
   font-size: 12px;
 }
 

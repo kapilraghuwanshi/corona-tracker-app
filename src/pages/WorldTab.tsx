@@ -5,38 +5,37 @@ import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 import './WorldTab.css';
 import codesToCountryNames from './../datafiles/Country3Codes.json';
+import {COVID_API_KEY} from '../ApiKeys'
 
 interface IGLobalCount {
-  count: number;
-  date: string;
-  result: ICaseCount;
+  cases: ICaseCount;
+  deaths: IDeathsCount;
 }
-
+interface IDeathsCount {
+  total: number;
+}
 interface ICaseCount {
-  confirmed: number;
+  active: number;
   recovered: number;
-  deaths: number;
+  total: number;
 }
-
 interface IGLobalCountryWiseCount {
   count: number;
   date: string;
   result: ICountry[];
 }
-
 interface ICountry {
-  country: ICaseCount
+  country: string,
+  cases: ICaseCount;
+  deaths: IDeathsCount;
 }
-
 interface ICountryCodeNamesJson {
   countryCodes: ICountryCodeNames;
 }
-
 interface ICountryCodeNames {
   code: string;
   name: string;
 }
-
 
 const slideOpts = {
   initialSlide: 1,
@@ -65,23 +64,32 @@ const WorldTab: React.FC = () => {
 
   const [data, setData] = useState<IGLobalCount>();
   const [showLoading, setShowLoading] = useState(true);
+
   useEffect(() => {
     const getGlobalData = async () => {
       //latest global count
-      const result = await axios('https://covidapi.info/api/v1/global');
-      // console.log(result);
-      setData(result.data);
+      const result = await axios('https://covid-193.p.rapidapi.com/statistics?country=all', {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': COVID_API_KEY,
+        }
+      });
+      //console.log("latest global count", result.data);
+      setData(result.data.response[0]);
       setShowLoading(false);
     };
     getGlobalData();
   }, []);
 
-  const confirmed = data?.result?.confirmed;
-  const recovered = data?.result?.recovered;
-  const deaths = data?.result?.deaths;
+  const total = data?.cases?.total;
+  const active = data?.cases?.active;
+  const recovered = data?.cases?.recovered;
+  const deaths = data?.deaths?.total;
+
+  //console.log("latest global count", total, active, recovered, deaths);
 
   const GlobalCasesPieChart = {
-    labels: ['Confirmed', 'Recovered', 'Deaths'],
+    labels: ['Active', 'Recovered', 'Deaths'],
     datasets: [
       {
         label: 'Covid-19',
@@ -95,20 +103,28 @@ const WorldTab: React.FC = () => {
           '#127729',
           '#ff073a'
         ],
-        data: [confirmed, recovered, deaths]
+        data: [active, recovered, deaths]
       }
     ]
   }
 
   const [countryWiseData, setCountryWiseData] = useState<ICountry[]>([]);
+
   useEffect(() => {
     const getGlobalCountryData = async () => {
       //latest global country wise count
-      const result = await axios('https://covidapi.info/api/v1/global/latest');
-      //console.log(result.data.result);
-      let sortedResult = result.data.result;
-      sortedResult.sort((a: Object, b: Object) => {
-        return (Object.values(a)[0].confirmed > Object.values(b)[0].confirmed ? -1 : (Object.values(a)[0].confirmed < Object.values(b)[0].confirmed ? 1 : 0));
+      // const result = await axios('https://covidapi.info/api/v1/global/latest');
+      const result = await axios('https://covid-193.p.rapidapi.com/statistics', {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': COVID_API_KEY,
+        }
+      });
+      //console.log("country wise count", result.data.response);
+      let sortedResult = result.data.response;
+      // by default - sort by country with most total cases
+      sortedResult.sort((a: ICountry, b: ICountry) => {
+        return (a.cases.total > b.cases.total  ? -1 : (a.cases.total < b.cases.total  ? 1 : 0));
       });
       setCountryWiseData(sortedResult);
     };
@@ -129,11 +145,11 @@ const WorldTab: React.FC = () => {
       <IonContent>
         <IonLoading isOpen={showLoading} onDidDismiss={() => setShowLoading(false)} message={'Fetching total cases...'} />
         <IonRow>
-          <IonCol class="pageTitle">COVID-19 Dashboard</IonCol>
+          <IonCol class="pageTitle">COVID-19 World Dashboard</IonCol>
         </IonRow>
         <IonRow class="casesBox">
-          <IonCol class="totalCases"> Confirmed {confirmed?.toLocaleString()}</IonCol>
-          <IonCol class="confirmedBox">Active <CalculateActiveCases a={confirmed} b={recovered} c={deaths} /></IonCol>
+          <IonCol class="totalCases"> Total {total?.toLocaleString()}</IonCol>
+          <IonCol class="confirmedBox">Active {active?.toLocaleString()}</IonCol>
           <IonCol class="recoveredBox">Recovered {recovered?.toLocaleString()}</IonCol>
           <IonCol class="deathsBox">Deaths {deaths?.toLocaleString()}</IonCol>
         </IonRow>
@@ -190,23 +206,24 @@ const WorldTab: React.FC = () => {
             </IonRow>
             {countryWiseData.map((item, idx) => (
               <IonRow class="tableZebraStrip" key={idx} >
-                <IonCol col-4 class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol>
-                <IonCol class="tableCol">{Object.values(item)[0].confirmed?.toLocaleString()}</IonCol>
-                <IonCol class="tableCol"><CalculateActiveCases a={Object.values(item)[0].confirmed} b={Object.values(item)[0].recovered} c={Object.values(item)[0].deaths} /></IonCol>
-                <IonCol class="tableCol">{Object.values(item)[0].recovered?.toLocaleString()}</IonCol>
-                <IonCol class="tableCol">{Object.values(item)[0].deaths?.toLocaleString()}</IonCol>
+                {/* <IonCol col-4 class="tableCountry"><CountryCodesToNames code={Object.keys(item)[0]} /></IonCol> */}
+                <IonCol col-4 class="tableCountry">{item.country}</IonCol>
+                <IonCol class="tableCol">{item.cases.total?.toLocaleString()}</IonCol>
+                <IonCol class="tableCol">{item.cases.active?.toLocaleString()}</IonCol>
+                <IonCol class="tableCol">{item.cases.recovered?.toLocaleString()}</IonCol>
+                <IonCol class="tableCol">{item.deaths.total?.toLocaleString()}</IonCol>
               </IonRow>
             ))}
           </IonGrid>
         </IonCard>
       </IonContent>
-      <IonRow class="tableFooter">
+      {/* <IonRow class="tableFooter">
         <IonCol col-4 class="tableCountry">World</IonCol>
-        <IonCol class="tableCol">{confirmed?.toLocaleString()} </IonCol>
-        <IonCol class="tableCol"><CalculateActiveCases a={confirmed} b={recovered} c={deaths} /></IonCol>
+        <IonCol class="tableCol">{total?.toLocaleString()} </IonCol>
+        <IonCol class="tableCol">Active {active?.toLocaleString()}</IonCol>
         <IonCol class="tableCol">{recovered?.toLocaleString()}</IonCol>
         <IonCol class="tableCol">{deaths?.toLocaleString()}</IonCol>
-      </IonRow>
+      </IonRow> */}
     </IonPage>
   );
 };

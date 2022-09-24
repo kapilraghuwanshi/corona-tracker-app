@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, Ion
 import moment from 'moment';
 import axios from 'axios';
 import './NewsTab.css';
-import { NEWS_API_KEY} from '../newsApikey';
+import { NEWS_API_KEY} from '../ApiKeys';
 
 interface INewsResponse {
   status: string;
@@ -27,7 +27,7 @@ const NewsTab: React.FC = () => {
 
   useEffect(() => {
     const getNewsData = async () => {
-      // Changed News API from newsapi.org to currentsapi due to developer account's limits
+      // Changed News API from newsapi.org to currentsapi due to developer account's limits (https://currentsapi.services/en)
       const result = await axios('https://api.currentsapi.services/v1/search?q=coronavirus&q=covid19&language=en&apiKey=' + NEWS_API_KEY);
       // console.log(result);
       setData(result.data.news);

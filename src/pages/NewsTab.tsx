@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, Ion
 import moment from 'moment';
 import axios from 'axios';
 import './NewsTab.css';
-import NEWS_API_KEY from '../newsApikey';
+import { NEWS_API_KEY} from '../newsApikey';
 
 interface INewsResponse {
   status: string;

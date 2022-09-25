@@ -1,0 +1,33 @@
+export const countryMap = new Map(
+    [
+        ["IND", "India"],
+        ["USA", "United States"],
+        ["ARE", "UAE"],
+        ["FRA", "France"],
+        ["ESP", "Spain"],
+        ["ITA", "Italy"],
+        ["DEU", "Germany"],
+        ["CHN", "China"],
+        ["JPN", "Japan"],
+        ["ZAF", "South Africa"],
+        ["KOR", "South Korea"],
+        ["CAN", "Canada"],
+        ["BRA", "Brazil"],
+        ["ARG", "Argentina"],
+        ["PAK", "Pakistan"],
+        ["CHE", "Switzerland"],
+        ["IRN", "Iran"],
+        ["GBR", "United Kingdom"],
+        ["TUR", "Turkey"],
+        ["NLD", "Netherland"],
+        ["RUS", "Russia"],
+        ["PRT", "Portugal"],
+        ["ISR", "Israel"],
+        ["SWE", "Sweden"],
+        ["AUS", "Australia"],
+        ["AUT", "Austria"],
+        ["NZL", "New Zealand"],
+        ["SGP", "Singapore"],
+        ["MYS", "Malaysia"]
+    ]
+);

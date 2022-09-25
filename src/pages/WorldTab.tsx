@@ -159,7 +159,7 @@ const WorldTab: React.FC = () => {
             options={{
               legend: {
                 display: true,
-                position: 'bottom',
+                position: 'right',
               },
               plugins: {
                 datalabels: {

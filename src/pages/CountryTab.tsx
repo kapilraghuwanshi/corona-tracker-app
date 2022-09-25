@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonToolbar, IonRow, IonCol, IonImg, Ion
 import moment from 'moment';
 import axios from 'axios';
 import { Doughnut, Bar } from 'react-chartjs-2';
-import {COVID_API_KEY} from '../ApiKeys'
+import {COVID_API_KEY, COVID_MONTHLY_API_KEY} from '../ApiKeys'
 import './CountryTab.css';
 import { CalculateActiveCases } from './WorldTab';
 import 'chartjs-plugin-datalabels';
@@ -45,9 +45,12 @@ interface ICountryTimeSeries {
 
 interface ISeriesCases {
   date: string;
-  confirmed: number;
-  deaths: number;
-  recovered: number;
+  // confirmed: number;
+  // deaths: number;
+  // recovered: number;
+  new_cases: number;
+  new_deaths: number;
+  new_tests: number;
 }
 
 const CountryTab: React.FC = () => {
@@ -123,9 +126,16 @@ const CountryTab: React.FC = () => {
 
   useEffect(() => {
     const getCountryTimeSeriesData = async () => {
-      const result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/timeseries/' + startDate + '/' + endDate);
-      console.log("country wise count", result);
-      setcountryTimeSeriesData(result.data.result);
+      // const result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/timeseries/' + startDate + '/' + endDate);
+      // COVID Monthly API https://rapidapi.com/vaccovidlive-vaccovidlive-default/api/vaccovid-coronavirus-vaccine-and-treatment-tracker
+      const result = await axios('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/sixmonth/' + 'IND', {
+        method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': COVID_MONTHLY_API_KEY,
+          }
+      });
+      console.log("country weekly count", result.data);
+      setcountryTimeSeriesData(result.data);
       setShowLoading(false);
     };
 
@@ -134,35 +144,35 @@ const CountryTab: React.FC = () => {
 
   let dateArr: Array<string> = [];
   let confirmedArr: Array<number> = [];
-  let recoveredArr: Array<number> = [];
   let deathsArr: Array<number> = [];
+  let testArr: Array<number> = [];
 
   countryTimeSeriesData.forEach((ele, idx) => {
     dateArr.push(ele.date);
-    confirmedArr.push(ele.confirmed);
-    recoveredArr.push(ele.recovered);
-    deathsArr.push(ele.deaths);
+    confirmedArr.push(ele.new_cases);
+    testArr.push(ele.new_tests);
+    deathsArr.push(ele.new_deaths);
   });
 
   const countryBarChart = {
     labels: [moment(dateArr[0]).format('MMMM Do'), moment(dateArr[1]).format('MMMM Do'), moment(dateArr[2]).format('MMMM Do'), moment(dateArr[3]).format('MMMM Do'), moment(dateArr[4]).format('MMMM Do')],
     datasets: [
       {
-        label: 'Confirmed',
+        label: 'New Caes',
         backgroundColor: '#4399F6',
         borderColor: '#007bff',
         borderWidth: 1,
         data: [confirmedArr[0], confirmedArr[1], confirmedArr[2], confirmedArr[3], confirmedArr[4]]
       },
       {
-        label: 'Recovered',
+        label: 'New Tests',
         backgroundColor: '#37EA61',
         borderColor: '#127729',
         borderWidth: 1,
-        data: [recoveredArr[0], recoveredArr[1], recoveredArr[2], recoveredArr[3], recoveredArr[4]]
+        data: [testArr[0], testArr[1], testArr[2], testArr[3], testArr[4]]
       },
       {
-        label: 'Deaths',
+        label: 'New Deaths',
         backgroundColor: '#F34943',
         borderColor: '#ff073a',
         borderWidth: 1,
@@ -273,7 +283,7 @@ const CountryTab: React.FC = () => {
               },
               title: {
                 display: true,
-                text: 'Cases in the current week',
+                text: 'Cases in the last week',
                 fontSize: 15
               },
               legend: {

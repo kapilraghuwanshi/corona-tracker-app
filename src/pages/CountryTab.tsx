@@ -4,12 +4,12 @@ import moment from 'moment';
 import axios from 'axios';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import {COVID_API_KEY, COVID_MONTHLY_API_KEY} from '../ApiKeys'
+import {countryMap} from '../CountryCodesMap';
 import './CountryTab.css';
 import { CalculateActiveCases } from './WorldTab';
 import 'chartjs-plugin-datalabels';
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
-
 
 interface ICountryCount {
     country: string,
@@ -53,8 +53,12 @@ interface ISeriesCases {
   new_tests: number;
 }
 
+function getCountryNameFromCode(code: string): string | any {
+  return countryMap.get(code);
+}
+
 const CountryTab: React.FC = () => {
-  const [yourCountry, setYourCountry] = useState<string>('India'); // by default India
+  const [yourCountry, setYourCountry] = useState<string>('IND'); // by default India
   Storage.set({ key: 'yourCountry', value: yourCountry });
   const [countryData, setcountryData] = useState<ICountryCount>();
   const [showLoading, setShowLoading] = useState(true);
@@ -62,19 +66,23 @@ const CountryTab: React.FC = () => {
   useEffect(() => {
     const getCountryData = async () => {
       let result: any = '';
-      // fetch country from localStorage
+      // fetch country code from localStorage
       const { value } = await Storage.get({ key: 'yourCountry' });
       if (value) {
+        const countryName = getCountryNameFromCode(value);
+        console.log("country name and code", countryName, value);
         // result = await axios('https://covidapi.info/api/v1/country/' + value + '/latest');
-        result = await axios('https://covid-193.p.rapidapi.com/statistics?country='+ value, {
+        result = await axios('https://covid-193.p.rapidapi.com/statistics?country='+ countryName, {
         method: 'GET',
         headers: {
           'X-RapidAPI-Key': COVID_API_KEY,
         }
       });
       } else {
+        const yourCountryName = getCountryNameFromCode(yourCountry);
+        console.log("country name and code", yourCountryName, yourCountry);
         // result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/latest');
-        result = await axios('https://covid-193.p.rapidapi.com/statistics?country='+ yourCountry, {
+        result = await axios('https://covid-193.p.rapidapi.com/statistics?country='+ yourCountryName, {
           method: 'GET',
           headers: {
             'X-RapidAPI-Key': COVID_API_KEY,
@@ -126,9 +134,10 @@ const CountryTab: React.FC = () => {
 
   useEffect(() => {
     const getCountryTimeSeriesData = async () => {
+
       // const result = await axios('https://covidapi.info/api/v1/country/' + yourCountry + '/timeseries/' + startDate + '/' + endDate);
       // COVID Monthly API https://rapidapi.com/vaccovidlive-vaccovidlive-default/api/vaccovid-coronavirus-vaccine-and-treatment-tracker
-      const result = await axios('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/sixmonth/' + 'IND', {
+      const result = await axios('https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/covid-ovid-data/sixmonth/' + yourCountry, {
         method: 'GET',
           headers: {
             'X-RapidAPI-Key': COVID_MONTHLY_API_KEY,

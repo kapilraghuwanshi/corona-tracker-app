@@ -234,7 +234,6 @@ http://ionicframework.com/docs/theming/ */
   
 }
 
-
 @media (min-width: 768px) {
   ion-card {
     padding: 0px 200px;
@@ -250,5 +249,17 @@ http://ionicframework.com/docs/theming/ */
 @media (min-width: 1366px) {
   ion-card {
     padding: 0px 500px;
+  }
+}
+
+@media (min-width: 1600px) {
+  ion-card {
+    padding: 0px 520px;
+  }
+}
+
+@media (min-width: 2100px) {
+  ion-card {
+    padding: 0px 550px;
   }
 }
